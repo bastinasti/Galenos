@@ -1,0 +1,32 @@
+{% extends 'Inicio/PagAnimales/plantillaProductos.html' %}
+{% load static %}
+{% block titulo %}
+<title>Seccion Perros</title>
+{% endblock titulo %}
+{% block productos %}
+<div class="row">
+    {% for p in producto %}
+
+    <div class="col-md-4">
+        <div class="card shadow-sm " style="height: 100%; width: 100%; margin: 5px 0px;">
+            <a href="{% url 'plantillaProducts' p.idProducto %}"><img class="bd-placeholder-img card-img-top bordej"
+                    width="100%" src="{{ p.imgProducto.url }}" role="img" aria-label="Placeholder: Thumbnail"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+                </img>
+            </a>
+            <div class="card-body">
+                <p class="card-text text-center">{{ p.nomProducto }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Valor: ${{ p.valor}}</small>
+                    <p class="card-text">Stock : {{p.stock}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock productos %}

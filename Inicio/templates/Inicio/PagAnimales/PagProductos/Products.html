@@ -1,0 +1,39 @@
+{% extends 'Inicio/PagAnimales/PagProductos/PlantillaProducts.html' %}
+{% load static %}
+
+{% block titulo %}
+{% for p in producto %}
+<title>{{ p.nomProducto }</title>
+{% endfor %}
+{% endblock titulo %}
+
+{% block nomproducto %}
+{% for p in producto %}
+<h2 class="featurette-heading">{{ p.nomProducto }}</span></h2>
+{% endfor %}
+{% endblock nomproducto %}
+
+{% block imagen %}
+{% for p in producto %}
+<img src="{{ p.imgProducto.url }}" id="margin" alt="none" width="100%" height="80%">
+{% endfor %}
+{% endblock imagen %}
+
+{% block descripcion %}
+{% for p in producto %}
+<li class="punto"><b>{{ p.descripcion }}</b></li>
+{% endfor %}
+{% endblock descripcion %}
+
+{% block valor %}
+{% for p in producto %}
+<p class="precio"> $ {{ p.valor }}</p>
+<p>Stock: {{ p.stock }}</p>
+{% endfor %}
+{% endblock valor %}
+
+{% block boton %}
+{% for p in producto %}
+<a href="{% url 'Add' p.idProducto %}" class="btn btn-secondary">Agregar al carrito</a>
+{% endfor %}
+{% endblock boton %}
