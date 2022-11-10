@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import inicio, registro, seccionperro, secciongato, seccionexotico, iniciosesion, plantillaProducts, carrito ,agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, registrar_usuario, pag_admin, pag_reportes, pedidos_admin, anadir_product_m, productos_admin, formulario, iniciar_sesion, modificar_product, modificar, eliminar_pro, stock, salir
+from .views import inicio, registro, registro2, seccionperro, secciongato, seccionexotico, iniciosesion, plantillaProducts, carrito ,agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, registrar_usuario, pag_admin, pag_reportes, pedidos_admin, anadir_product_m, productos_admin, formulario, iniciar_sesion, modificar_product, modificar, eliminar_pro, stock, salir
 
 urlpatterns =[
     path('',inicio, name="inicio"),
     path('registro/', registro, name="registro"),
+    path('registro2/', registro2, name="registro2"),
     path('registrar_usuario', registrar_usuario, name="registrar_usuario"),
     path('seccionperro/',seccionperro, name="seccionperro"),
     path('secciongato/',secciongato, name="secciongato"),

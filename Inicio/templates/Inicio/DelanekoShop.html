@@ -40,12 +40,10 @@
               <a class="nav-link" href="{% url 'registro' %}">Registrate</a>
             </li>
             {% endif %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'carrito' %}">Carrito 🛒</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link"
-                href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!">Contactanos 
+                href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!">Contactanos
                 💬</a>
             </li>
           </ul>
@@ -70,7 +68,7 @@
           <img src="{% static 'Inicio/img/inicio/xd.jpg' %}" alt="none">
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1>Recueda que sobre los $2.000.000 Tenemos despacho gratis!</h1>
+              <h1>¡Esperemos que tengas una buena visita a nuestros lugares de atencion!</h1>
               <p></p>
               <!--
               <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>-->
@@ -78,12 +76,11 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="{% static 'Inicio/img/inicio/si.jpg' %}"
-            alt="none">
+          <img src="{% static 'Inicio/img/inicio/si.jpg' %}" alt="none">
 
           <div class="container">
             <div class="carousel-caption">
-              <h1></h1>
+              <h1>Gran variedad de convenios para que te atiendas con tu previsión</h1>
               <p></p>
               <!--
               <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>-->
@@ -95,7 +92,7 @@
 
           <div class="container">
             <div class="carousel-caption text-end">
-              <h1>Los mejores precios en un solo lugar.</h1>
+              <h1>Contamos con un equipo de profesionales</h1>
               <p></p>
               <!--
               <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>-->
@@ -128,29 +125,35 @@
 
     <div class="container marketing">
 
+      <div class="row">
+        <div class="col-md-12">
+          <div class="fundadores">
+            <h1>ACÁ PUEDES RESERVAR TU HORA</h1>
+          </div>
+        </div>
+      </div>
+
       <!-- PERROS -->
       <div class="row">
         <div class="col-lg-4">
-          <img src="{% static 'Inicio/img/perrofeliz.png' %}" width="250" height="250">
-          <h2>PERROS</h2>
-          <p>Comida y accesorios para tu compañero favorito.</p>
-          <p><a class="btn btn-secondary" href="{% url 'seccionperro' %}">Ver más... &raquo;</a></p>
+          <img src="{% static 'Inicio/img/inicio/icon2.png' %}" width="250" height="250">
+          <h2>Horas Medicas</h2>
+          <p></p>
+          <p><a class="btn btn-secondary" href="{% url 'registro' %}">Ver más... &raquo;</a></p>
         </div>
         <!--GATOS-->
         <div class="col-lg-4">
-          <img src="{% static 'Inicio/img/—Pngtree—two little kittens_852610.png' %}" alt="none" width="250"
-            height="250">
-          <h2>GATOS</h2>
-          <p>Comida y accesorios para tu peludo y minino favorito.</p>
-          <p><a class="btn btn-secondary" href="{% url 'secciongato' %}">Ver más... &raquo;</a></p>
+
+          <h2></h2>
+          <p></p>
+          <p></p>
         </div>
         <!--EXOTICOS -->
         <div class="col-lg-4">
-          <img src="{% static 'inicio/img/—Pngtree—cartoon little mouse mouse background_3900035.png' %}" alt="none"
-            width="250" height="250">
-          <h2>EXOTICOS</h2>
-          <p>Comida y accesorios para tu mejor compañero.</p>
-          <p><a class="btn btn-secondary" href="{% url 'seccionexotico' %}">Ver más... &raquo;</a></p>
+          <img src="{% static 'inicio/img/inicio/icon1.png' %}" alt="none" width="250" height="250">
+          <h2>Examenes</h2>
+          <p></p>
+          <p><a class="btn btn-secondary" href="{% url 'registro2' %}">Ver más... &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
@@ -162,16 +165,16 @@
       <div class="row featurette">
         <div class="col-md-7">
           <div id="textcolor">
-            <h2 class="featurette-heading">¿Quien somos? <span class="text-muted">Como empezó todo...</span></h2>
-            <p class="lead">El término "DELANEKO" fue creado por Bastian Albornoz, profesor y Médico Veterinario de la
-              Universidad de Chile y Yuri Brereton Durán, Medico Veterinario y Abogado de la Universidad Cátolica.
-              El término NEKO designa a un gato que en virtud de su conducta y su comportamiento. <br> DELANEKO quiere
-              decir que tenemos una gran sinfonia con nuestrosa animales.
+            <h2 class="featurette-heading">¿Quienes somos? <span class="text-muted"></span></h2>
+            <p class="lead">Clínica de Familia preparada para atender a sus pacientes en las distintas etapas de la vida
+              a partir de su nacimiento en adelante, en todas las especialidades médicas con el servicio cálido que la
+              caracteriza desde sus inicios, incorporando la mejor tecnología disponible y profesionales de la salud
+              altamente calificados.
             </p>
           </div>
         </div>
         <div class="col-md-5">
-          <img src="{% static 'Inicio/img/ken-reid-fUknnVKe3wA-unsplash.jpg' %}" width="100%" height="100%">
+          <img src="{% static 'Inicio/img/inicio/quien.jpg' %}" width="100%" height="100%">
         </div>
       </div>
 
@@ -180,13 +183,14 @@
       <div class="row featurette">
         <div class="col-md-7 order-md-2">
           <div id="textcolor">
-            <h2 class="featurette-heading">Nuestra Misión <span class="text-muted">𓃥 .</span></h2>
-            <p class="lead">Creemos que los amigales son integrantes importantes de las familias. Nuestra misión es
-              entregar bienestar a esas familias en toda su diversidad.</p>
+            <h2 class="featurette-heading">Nuestra Misión <span class="text-muted"></span></h2>
+            <p class="lead">Nuestra misión es ser líderes en la entrega de cuidados de la salud y en la seguridad de los
+              pacientes, mejorando continuamente la calidad de nuestros servicios, entregando medicina de excelencia.
+            </p>
           </div>
         </div>
         <div class="col-md-5 order-md-1">
-          <img src="{% static 'Inicio/img/remi-remino-E9kVmtiqqGE-unsplash.jpg' %}" alt="none" width="100%"
+          <img src="{% static 'Inicio/img/inicio/mision.jpg' %}" alt="none" width="100%"
             height="100%">
         </div>
       </div>
@@ -197,25 +201,44 @@
       <div class="row">
         <div class="col-md-12">
           <div class="fundadores">
-            <h1>FUNDADORES <span class="text-muted">𓃥 .</span></h1>
+            <h1>FUNDADORES</h1>
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-md-6">
           <p id="imgcent"><img src="https://www.amigales.cl/pub/media/wysiwyg/infortis/ultimo/aboutus/Fernando.gif"
-              alt="Yuri" width="300px" height="300px"></p>
+              alt="Yuri" width="200px" height="200px"></p>
           <div>
             <h3 id="imgcent">Yuri Durán</h3>
-            <p class="lead" id="imgcent">Medico Veterinario y Abogado</p>
+            <p class="lead" id="imgcent">Medico y Abogado</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <p id="imgcent"><img src="https://www.amigales.cl/media/wysiwyg/aboutus/Isabel.gif"
+              alt="none" width="200px" height="200px"></p>
+          <div>
+            <h3 id="imgcent">Bastián Albornoz</h3>
+            <p class="lead" id="imgcent">Profesor y Pediatra</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <p id="imgcent"><img src="https://www.amigales.cl/pub/media/wysiwyg/infortis/ultimo/aboutus/Fernando.gif"
+              alt="Yuri" width="200px" height="200px"></p>
+          <div>
+            <h3 id="imgcent">Diego Lopéz</h3>
+            <p class="lead" id="imgcent">Licenciado en Ginecología</p>
           </div>
         </div>
 
         <div class="col-md-6">
           <p id="imgcent"><img src="https://www.amigales.cl/pub/media/wysiwyg/infortis/ultimo/aboutus/Ivan.gif"
-              alt="none" width="300px" height="300px"></p>
+              alt="none" width="200px" height="200px"></p>
           <div>
-            <h3 id="imgcent">Bastián Albornoz</h3>
-            <p class="lead" id="imgcent">Profesor y Médico Veterinario de la
-              Universidad de Chile</p>
+            <h3 id="imgcent">Claudio Opazo</h3>
+            <p class="lead" id="imgcent">Profesor y Médico licenciado de la Universidad de Chile</p>
           </div>
         </div>
       </div>
@@ -233,8 +256,8 @@
 
     <footer class="container">
       <p class="float-end"><a href="#">Principio</a></p>
-      <p>&copy; 2022 DELANEKO, Inc. &middot; <a href="#">Facebook</a> &middot; <a href="#">Twitter</a> &middot; <a
-          href="#">Instagram</a> &middot; <a href="#">Youtube</a></p>
+      <p>&copy; 2022 Galenos. &middot; <a
+          href="https://www.youtube.com/watch?v=poa_QBvtIBA" >Instagram</a> &middot; <a href="https://www.youtube.com/watch?v=JlA81oXYKUg">Youtube</a></p>
     </footer>
 
 

@@ -1,6 +1,6 @@
 body {
   height: 100%;
-  background-image: url(../../../Inicio/img/InicioSesion/fondo.jpg);
+  background-image: url(../../../Inicio/img/InicioSesion/diego.jpg);
   background-size: cover;
   background-attachment: fixed;
 
@@ -70,7 +70,7 @@ body {
 
 .nose {
   text-align: center;
-  color: #030303;
+  color: #ffffff;
 }
 
 .form-floating {
@@ -84,7 +84,7 @@ body {
 
 .xd {
   text-align: center;
-  color: #030303;
+  color: #ffffff;
 }
 
 .xd img {
@@ -97,7 +97,7 @@ body {
 }
 
 .color {
-  color: #000000;
+  color: #fff;
 }
 
 .color p {
@@ -128,7 +128,7 @@ body {
 	bottom:40px;
 	right:40px;
 	background-color:#25d366;
-	color:#FFF;
+	color:rgb(0, 0, 0);
 	border-radius:50px;
 	text-align:center;
   font-size:30px;
@@ -143,4 +143,8 @@ body {
 
 .my-float{
 	margin-top:16px;
+}
+
+.hola{
+  background-color:rgba(3, 13, 18, 0.603);
 }

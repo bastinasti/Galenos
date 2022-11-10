@@ -15,6 +15,9 @@ def inicio(request):
 def registro(request):
     return render(request, 'Inicio/Registro/registro.html')
 
+def registro2(request):
+    return render(request, 'Inicio/Registro2/registro2.html')
+
 def seccionperro(request):
     perro = Producto.objects.filter(idTipProducto = 2).order_by('idProducto')
     contexto = {"producto":perro}

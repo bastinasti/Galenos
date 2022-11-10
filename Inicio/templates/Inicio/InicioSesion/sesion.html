@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <form action="" method="post">
         <div class="container-fluid">
-          <a class="navbar-brand color" href="{% url 'inicio' %}l">Delaneko-Shop</a>
+          <a class="navbar-brand color" href="{% url 'inicio' %}"></a>
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -47,11 +47,11 @@
     </nav>
   </header>
 
-  <main class="form-signin" id="capa">
+  <main class="form-signin hola" id="capa">
     <form method="post" action="{% url 'iniciar_sesion' %}">
       {% csrf_token %}
       <div class="xd">
-        <img class="mb-4" src="{% static 'Inicio/img/InicioSesion/LOGODELANEKO.png' %}" alt="" width="72" height="57">
+        <img class="mb-4" src="" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Inicio de sesion</h1>
       </div>
       <div class="form-floating">
