@@ -1,14 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-class TipoProducto(models.Model):
-    idTipProducto = models.AutoField(primary_key = True, verbose_name = "ID tipo producto")
-    nomTipo = models.CharField(max_length = 15, verbose_name = "Gato Perro Exotico", blank = False, null = False)
-
-    def __str__(self):
-        return self.nomTipo
-
 
 class Persona(models.Model):
     idPersona = models.AutoField(primary_key = True, verbose_name = "La primary key de persona")
