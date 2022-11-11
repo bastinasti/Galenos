@@ -8,7 +8,7 @@ class Persona(models.Model):
     nomPersona = models.CharField(max_length = 50, verbose_name = "Nombre de la persona")
     apellido = models.CharField(max_length = 50,verbose_name = "Apellido/s de la persona")
     correo = models.CharField(max_length = 300, verbose_name = "Correo de la persona")
-    telefono = models.IntegerField(max_length = 9,verbose_name = "Telefono de la persona")
+    telefono = models.CharField(max_length = 9,verbose_name = "Telefono de la persona")
     fechaNac = models.CharField(max_length = 8,verbose_name = "Fecha de nacimiento de la persona")
 
     def __str__(self):
@@ -35,7 +35,7 @@ class Medico(models.Model):
     idMedico =  models.AutoField(primary_key = True, verbose_name = "La primary key del medico")
     rutMedico = models.CharField(max_length = 10, verbose_name = "Rut del medico")
     fechaContra = models.CharField(max_length = 8,verbose_name = "Fecha de contratación del medico")
-    sueldo = telefono = models.IntegerField(max_length = 300,verbose_name = "Sueldo del medico")
+    sueldo = models.IntegerField(verbose_name = "Sueldo del medico")
     idPersona = models.ForeignKey(Persona, on_delete=models.CASCADE)
 
     def __str__(self):
