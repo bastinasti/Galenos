@@ -35,9 +35,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'inicio' %}" href="#">Inicio</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'registro' %}">Regristate</a>
-                </li>
               {% endif %}
             </ul>
           </div>
@@ -51,7 +48,7 @@
     <form method="post" action="{% url 'iniciar_sesion' %}">
       {% csrf_token %}
       <div class="xd">
-        <img class="mb-4" src="" alt="" width="72" height="57">
+        <img class="mb-4" src="../../../static/Inicio/img/inicio/galenoctm.png" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Inicio de sesion</h1>
       </div>
       <div class="form-floating">

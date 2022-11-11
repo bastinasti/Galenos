@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect 
 from .models import Producto, Usuario, TipoUsuario, TipoProducto
-from .Carrito import Carrito
 from django.contrib import messages
 from django.contrib.auth import logout 
 
@@ -18,22 +17,6 @@ def registro(request):
 def registro2(request):
     return render(request, 'Inicio/Registro2/registro2.html')
 
-def seccionperro(request):
-    perro = Producto.objects.filter(idTipProducto = 2).order_by('idProducto')
-    contexto = {"producto":perro}
-    return render(request, 'Inicio/PagAnimales/Perros.html',contexto)
-
-def secciongato(request):
-    gato = Producto.objects.filter(idTipProducto = 1).order_by('idProducto')
-    contexto = {"producto":gato}
-    return render(request, 'Inicio/PagAnimales/Gato.html',contexto)
-
-def seccionexotico(request):
-    exotico = Producto.objects.filter(idTipProducto = 3).order_by('idProducto')
-    contexto = {"producto":exotico}
-    return render(request, 'Inicio/PagAnimales/Exotico.html',contexto)
-
-
 def iniciosesion(request):
     return render (request, 'Inicio/InicioSesion/sesion.html')
 
@@ -41,35 +24,6 @@ def plantillaProducts(request, idProducto):
     productos = Producto.objects.filter(idProducto = idProducto).order_by('idProducto')
     contexto = {"producto":productos}
     return render (request, 'Inicio/PagAnimales/PagProductos/Products.html', contexto)    
-
-
-#Carrito
-
-def carrito(request):
-    return render(request, 'Inicio/carrito_compra.html')
-
-def agregar_producto(request, idProducto):
-    carrito = Carrito(request)
-    producto = Producto.objects.get(idProducto = idProducto)
-    carrito.agregar(producto)
-    return redirect("carrito")
-
-def eliminar_producto(request, idProducto):
-    carrito = Carrito(request)
-    producto = Producto.objects.get(idProducto = idProducto)
-    carrito.eliminar(producto)
-    return redirect("carrito")
-
-def restar_producto(request, idProducto):
-    carrito = Carrito(request)
-    producto = Producto.objects.get(idProducto = idProducto)
-    carrito.restar(producto)
-    return redirect("carrito")
-
-def limpiar_carrito(request):
-    carrito = Carrito(request)
-    carrito.limpiar()
-    return redirect("carrito")
 
 #Registrar Usuario
 

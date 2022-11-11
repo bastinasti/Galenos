@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Formulario Registro</title>
+  <title>Horas Medicas</title>
   <link rel="stylesheet" href="{% static 'Inicio/css/cssRegistro/style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -41,7 +41,7 @@
     </nav>
   </header>
 
-  
+
 
 
   <main class="main">
@@ -53,10 +53,10 @@
 
         <!-- GRUPO NOMBRE-->
         <div class="col-md-5 formulario__grupo" id="grupo__nombre">
-          <label for="nombre" class="formulario__label">Nombre:</label>
+          <label for="rut" class="formulario__label">Rut:</label>
           <div class="formulario__grupo-input">
-            <input type="text" required class="form-control formulario__input" name="nombre" id="nombre"
-              placeholder="Nombre/s">
+            <input type="text" required class="form-control formulario__input" name="rut" id="rut"
+              placeholder="rut">
 
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
 
@@ -65,62 +65,52 @@
         </div>
 
         <div class="col-md-5 formulario__grupo" id="grupo__ap1">
-          <label for="ap1" class="formulario__label">Apellido/s:</label>
+          <label for="prevision" class="formulario__label">Previsión:</label>
           <div class="formulario__grupo-input">
-            <input type="text" required class="form-control formulario__input" name="apellido1" id="apellido1"
-              placeholder="Apellido/s">
+            <select type="text" required class="form-control formulario__input" name="prevision" id="prevision">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="fiat">Fiat</option>
+              <option value="audi">Audi</option>
+            </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
+
           </div>
-          <p class="formulario__input-error">Solo puede contener letras.</p>
         </div>
 
-        <div class="col-md-5 formulario__grupo" id="grupo__email">
-          <label for="inputEmail4" class="formulario__label">Email</label>
+        <div class="col-md-5 formulario__grupo" id="grupo__ap1">
+          <label for="especialidad" class="formulario__label">Especialidad:</label>
           <div class="formulario__grupo-input">
-            <input type="email" required class="formulario__input" name="email" id="email" placeholder="hola@hola.com">
+            <select type="text" required class="form-control formulario__input" name="especialidad" id="especialidad">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="fiat">Fiat</option>
+              <option value="audi">Audi</option>
+            </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
-          <p class="formulario__input-error">Ta mal</p>
-        </div>
-        <div class="col-md-6">
-
         </div>
 
-
-        <div class="col-md-5 formulario__grupo" id="grupo__password">
-          <label for="inputPassword1" class="formulario__label">Contraseña:</label>
+        <div class="col-md-5 formulario__grupo" id="grupo__ap1">
+          <label for="medico" class="formulario__label">Medico:</label>
           <div class="formulario__grupo-input">
-            <input type="password" required class="formulario__input" name="con1" id="con1" placeholder="Contraseña">
+            <select type="text" required class="form-control formulario__input" name="medico" id="medico">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="fiat">Fiat</option>
+              <option value="audi">Audi</option>
+            </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
-          <p class="formulario__input-error">La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al
-            menos una minúscula y al menos una mayúscula.</p>
-        </div>
-
-        <div class="col-md-5 formulario__grupo" id="grupo__password2">
-          <label for="inputPassword2" class="formulario__label">Confirmar Contraseña:</label>
-          <div class="formulario__grupo-input">
-            <input type="password" required class="formulario__input" name="con2" id="con2"
-              placeholder="Repitir Contraseña">
-            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-          </div>
-          <p class="formulario__input-error">Ambas contraseñas deben ser iguales...</p>
         </div>
 
         <div class="col-md-2">
 
         </div>
 
-        <div class="row g-3">
-          <div class="formulario__grupo" id="grupo__terminos">
-            <label class="formulario__label">
-              <input class="formulario__checkbox" required type="checkbox" name="terminos" id="terminos">
-              Acepto los Terminos y Condiciones
-            </label>
-          </div>
-
           <div class="formulario__mensaje" id="formulario__mensaje">
-            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente.
+            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario
+              correctamente.
             </p>
           </div>
 
