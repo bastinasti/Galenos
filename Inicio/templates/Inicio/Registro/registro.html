@@ -55,8 +55,7 @@
         <div class="col-md-5 formulario__grupo" id="grupo__nombre">
           <label for="rut" class="formulario__label">Rut:</label>
           <div class="formulario__grupo-input">
-            <input type="text" required class="form-control formulario__input" name="rut" id="rut"
-              placeholder="rut">
+            <input type="text" required class="form-control formulario__input" name="rut" id="rut" placeholder="rut">
 
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
 
@@ -68,10 +67,10 @@
           <label for="prevision" class="formulario__label">Previsión:</label>
           <div class="formulario__grupo-input">
             <select type="text" required class="form-control formulario__input" name="prevision" id="prevision">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="fiat">Fiat</option>
-              <option value="audi">Audi</option>
+              <option value="">Seleccionar</option>
+              {% for r in prevision %}
+              <option value="{{ r.idPrevision }}">{{ r.nombrePrevi }}</option>
+              {% endfor %}
             </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
 
@@ -82,10 +81,9 @@
           <label for="especialidad" class="formulario__label">Especialidad:</label>
           <div class="formulario__grupo-input">
             <select type="text" required class="form-control formulario__input" name="especialidad" id="especialidad">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="fiat">Fiat</option>
-              <option value="audi">Audi</option>
+              {% for t in especialidad %}
+              <option value="volvo"> {{ t.nombreEspe }}</option>
+              {% endfor %}
             </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
@@ -108,17 +106,17 @@
 
         </div>
 
-          <div class="formulario__mensaje" id="formulario__mensaje">
-            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario
-              correctamente.
-            </p>
-          </div>
+        <div class="formulario__mensaje" id="formulario__mensaje">
+          <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario
+            correctamente.
+          </p>
+        </div>
 
-          <div class="formulario__grupo formulario__grupo-btn-enviar">
-            <button type="submit" class="formulario__btn">Enviar</button>
-            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!
-            </p>
-          </div>
+        <div class="formulario__grupo formulario__grupo-btn-enviar">
+          <button type="submit" class="formulario__btn">Enviar</button>
+          <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!
+          </p>
+        </div>
 
 
 
