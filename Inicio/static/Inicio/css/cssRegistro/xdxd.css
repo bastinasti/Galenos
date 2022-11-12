@@ -1,0 +1,148 @@
+body {
+    height: 100%;
+    background-image: linear-gradient(#b8cce6, #8a95b1);
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+
+
+
+.ola {
+
+    margin-top: 10%;
+}
+
+.imgfooter {
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+footer {
+    padding-bottom: 5%;
+    margin-top: 10%;
+}
+
+/*header*/
+
+.fondosi a {
+    color: black;
+}
+
+.header {
+    background: #c9ecff;
+    padding: 1rem 0;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+
+}
+
+.header a {
+    color: black;
+    text-decoration: none;
+
+}
+
+.logo-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/*-----------------*/
+.logo {
+    letter-spacing: 5px;
+    font-size: 1rem;
+}
+
+.menu-icon {
+    display: none;
+}
+
+.navbar {
+    background: rgba(64, 206, 194, 0.144);
+
+}
+
+.color {
+    color: #000;
+}
+
+/*-----------------*/
+
+
+
+/*FORMS*/
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+ main{
+     margin-top: 10%;
+ }
+
+
+.formulario {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 18px 28px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border-radius: 7px;
+}
+
+.boton {
+    width: 200px;
+    height: 200px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 80px;
+	background: #2a1841;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	border: none;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: .3s ease all;
+	border-radius: 5px;
+	position: relative;
+	overflow: hidden;
+}
+
+.boton span {
+	position: relative;
+	z-index: 2;
+	transition: .3s ease all;
+}
+
+.boton.dos::after {
+	content: "";
+	width: 100%;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: calc(-100% - 80px);
+	border-bottom: 80px solid #286cff;
+	border-right: 80px solid transparent;
+	transition: .4s ease-in-out all;
+}
+
+.boton.dos:hover::after {
+	left: 0;
+}
+
+.label{
+    color: #fff;
+}
