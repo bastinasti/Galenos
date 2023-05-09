@@ -53,8 +53,9 @@ class Medico(models.Model):
 class Paciente(models.Model):
     idPaciente =  models.AutoField(primary_key = True, verbose_name = "La primary key del paciente")
     rutPaciente = models.CharField(max_length = 10, verbose_name = "Rut del paciente")
-    idPersona = models.ForeignKey(Persona, on_delete=models.CASCADE)
-    idPrevision = models.ForeignKey(Prevision, on_delete=models.CASCADE)
+    prevision = models.CharField(max_length = 30, verbose_name = "Nombre de la prevision")
+    especialidad = models.CharField(max_length = 30, verbose_name = "Nombre de la especialidad del medico")
+    nomMedico = models.CharField(max_length = 30, verbose_name = "Nombre del medico")
 
     def __str__(self):
         return self.rutPaciente

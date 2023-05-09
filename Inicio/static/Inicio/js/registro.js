@@ -1,20 +1,106 @@
 
 
+/*
+
+var Fn = {
+  // Valida el rut con su cadena completa "XXXXXXXX-X"
+  validaRut: function (rutCompleto) {
+    rutCompleto = rutCompleto.replace("‐", "-");
+    if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto))
+      return false;
+    var tmp = rutCompleto.split('-');
+    var digv = tmp[1];
+    var rut = tmp[0];
+    if (digv == 'K') digv = 'k';
+
+    return (Fn.dv(rut) == digv);
+  },
+  dv: function (T) {
+    var M = 0, S = 1;
+    for (; T; T = Math.floor(T / 10))
+      S = (S + T % 10 * (9 - M++ % 6)) % 11;
+    return S ? S - 1 : 'k';
+  }
+}
 
 
-/*validacion form*/
+$("#btnvalida").click(function () {
+  if (Fn.validaRut($("#rut1").val())) {
+    $("#msgerror").html("El rut ingresado es válido :D");
+  } else {
+    $("#msgerror").html("El Rut no es válido :'( ");
+  }
+});
+
+
+*/
+
+
+
+
+
+
+let button = document.querySelector('.button');
+let buttonText = document.querySelector('.tick');
+
+const tickMark = "<svg width=\"58\" height=\"45\" viewBox=\"0 0 58 45\" xmlns=\"http://www.w3.org/2000/svg\"><path fill=\"#fff\" fill-rule=\"nonzero\" d=\"M19.11 44.64L.27 25.81l5.66-5.66 13.18 13.18L52.07.38l5.65 5.65\"/></svg>";
+
+buttonText.innerHTML = "Submit";
+
+button.addEventListener('click', function() {
+
+  if (buttonText.innerHTML !== "Submit") {
+    buttonText.innerHTML = "Submit";
+  } else if (buttonText.innerHTML === "Submit") {
+    buttonText.innerHTML = tickMark;
+  }
+  this.classList.toggle('button__circle');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*validacion form
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input')
 
-
-
-
 const expresiones = {
-	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo (NOSE OCUPA por ahora 0 preguntas plis ta de emergencia grasia.)
-	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/, // 4 a 12 digitos.
-	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	telefono: /^\d{8,9}$/ // 7 a 14 numeros.
+  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo (NOSE OCUPA por ahora 0 preguntas plis ta de emergencia grasia.)
+  nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+  password: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/, // 4 a 12 digitos.
+  correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  telefono: /^\d{8,9}$/ // 7 a 14 numeros.
   
 }
 const campos = {
@@ -105,8 +191,6 @@ inputs.forEach((input) => {
 
 formulario.addEventListener('submit', (e) => {
   
-
-
   const terminos = document.getElementById('terminos');
   if(campos.nombre && campos.ap1 && campos.email && campos.password && terminos.checked ){
     formulario();
@@ -127,3 +211,4 @@ formulario.addEventListener('submit', (e) => {
 });
 
 
+/** */

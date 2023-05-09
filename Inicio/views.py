@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect 
-from .models import  Usuario, TipoUsuario
+from .models import  Usuario, TipoUsuario, Paciente
 from django.contrib import messages
 from django.contrib.auth import logout 
 
@@ -33,6 +33,18 @@ def registrar_usuario(request):
     
     Usuario.objects.create(nombre = nombre, apellido = apellido1, clave = con1, correo = email ,idTipoUsuario = tipousuario)
     return redirect('inicio')
+
+def registrar_paciente(request):
+
+    rut1 = request.POST['rut1']
+    prevision1 = request.POST['prevision1']
+    especialidad1 = request.POST['especialidad1']
+    medico1 = request.POST['medico1']
+
+    Paciente.objects.create(rutPaciente = rut1, prevision = prevision1, especialidad = especialidad1, nomMedico = medico1)
+    return redirect ('registro')
+
+
 
 
 def iniciar_sesion(request):
