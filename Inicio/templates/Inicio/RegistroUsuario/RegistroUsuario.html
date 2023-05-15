@@ -42,115 +42,87 @@
     </header>
     <!-- QUITAR ESTO O QUIZAS METER EL REGISTRO AQUI -->
 
-    
+    <!-- INICIO FORMULARIO REGISTRO -->
     <main class="main">
         <div class="container">
             <form class="row g-3 formulario" id="wrapper" action="{% url 'registrar_paciente' %}" method="POST"
                 enctype="multipart/form-data" name="formulario">
                 {% csrf_token %}
 
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
+                <!-- INICIO NOMBRE -->
                 <div class="col-md-6">
-                    <label for="prevision1" class="label">Previsión:</label>
-                    <select type="text" required class="form-control formulario__input" name="prevision1"
-                        id="prevision1">
-                        <option value="">Seleccionar</option>
-                        <option value="1"> Esencial</option>
-                        <option value="2"> Consalud</option>
-                        <option value="3"> Banmedica</option>
-                        <option value="4"> Isalud</option>
-                    </select>
+                    <label for="prevision1" class="label">Nombre:</label>
+                    <input type="text" required class="form-control formulario__input" name="prevision1" placeholder="Nombre Completo">
                 </div>
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
+                <!-- FIN NOMBRE -->
 
-
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
-                <div class="col-md-6 formulario__grupo" id="grupo__ap1">
-                    <label for="especialidad1" class="label">Tipo de Examen:</label>
-                    <select type="text" required class="form-control formulario__input" name="especialidad1"
-                        id="especialidad1">
-                        <option value=""> Seleccionar</option>
-                        <option value="1">Sangre o orina </option>
-                        <option value="2">Radiografias</option>
-                        <option value="3">Ecografias</option>
-                    </select>
-                </div>
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
-
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
-                <div class="col-md-6 formulario__grupo" id="grupo__ap1">
-                    <label for="medico1" class="label">Enfermero/a:</label>
-                    <select type="text" required class="form-control formulario__input" name="medico1" id="medico1">
-                        <option value="">Seleccionar</option>
-                        <option value="1">Diego Opazo</option>
-                        <option value="2">Alexis Lopez</option>
-                        <option value="3">Ignacio Felix</option>
-                    </select>
-                </div>
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
-
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
-                <div class="col-md-6">
-                    <label class="label">Horas disponibles:</label>
-                    <select type="text" required class="form-control formulario__input" name="hora" id="hora">
-                        <option value="">Seleccionar</option>
-                        <option value="1">14:30</option>
-                        <option value="2">15:30</option>
-                        <option value="3">17:00</option>
-                    </select>
-                </div>
-                <!-- ¿QUITAR O MODIFICAR ESTO? -->
-
-                <!-- DATOS DE REGISTRO RUT -->
+                <!-- INICIO RUT -->
                 <div class="col-md-6">
                     <label for="rut1" class="label">Rut:</label>
                     <input type="text" required class="form-control formulario__input" name="rut1" id="rut1"
                         placeholder="207083208">
                 </div>
-                <!-- DATOS DE REGISTRO RUT -->
+                <!-- FIN RUT -->
 
-                <!-- FUTURO BOTON PARA REGISTRAR USUARIO -->
+                <!-- INICIO CORREO ELECTRONICO -->
+                <div class="col-md-6 formulario__grupo" id="grupo__ap1">
+                    <label for="especialidad1" class="label">Correo electronico:</label>                    
+                    <input type="email" required class="form-control formulario__input" name="prevision1" placeholder="Correo Electronico">
+                </div>
+                <!-- FIN CORREO ELECTRONICO -->
+
+                <!-- INICIO CLAVE -->
+                <div class="col-md-6 formulario__grupo" id="grupo__ap1">
+                    <label for="medico1" class="label">Clave</label>
+                    <input type="password" required class="form-control formulario__input" name="prevision1" placeholder="Clave">                    
+                </div>
+                <!-- FIN CLAVE -->
+
+                <!-- INICIO REP CLAVE -->
+                <div class="col-md-6 formulario__grupo" id="grupo__ap1">
+                    <label for="medico1" class="label">Repetir Clave</label>
+                    <input type="password" required class="form-control formulario__input" name="prevision1" placeholder="Repetir Clave">                    
+                </div>
+                <!-- FIN REP CLAVE -->
+
+                <!-- INICIO BOTON PARA REGISTRAR USUARIO -->
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
 
                         </div>
                         <div class="col-md-4">
-                            <button class="boton dos"><span>Confirmar</span></button>
+                            <button class="boton dos"><span>Registrarme</span></button>
                         </div>
                         <div class="col-md-4">
 
                         </div>
                     </div>
                 </div>
-                <!-- FUTURO BOTON PARA REGISTRAR USUARIO -->
-
+                <!-- FIN BOTON PARA REGISTRAR USUARIO -->
             </form>
         </div>
     </main>
+    <!-- FIN FORMULARIO REGISTRO -->
 
-    <!-- ¿QUITAR ESTO? -->
+    <!-- INICIO API WSP -->
     <div class="container">
         <a href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información!"
             class="float" target="_blank">
             <i class="fa fa-whatsapp my-float"></i>
         </a>
     </div>
+    <!-- FIN API WSP -->
 
+    <!-- INICIO FOOTER  -->
     <footer class="container">
         <div class="row">
-            <div class="col-md-12">
                 <hr class="featurette-divider">
-                <p class="float-end"><a href="#">Principio</a></p>
-                <p>&copy; 2022 Clinica Galenos, Inc. &middot; <a href="#">Facebook</a> &middot; <a href="#">Twitter</a>
-                    &middot;
-                    <a href="#">Instagram</a>
+                <p>&copy; 2022 Clinica Galenos, Inc.
                 </p>
-            </div>
-
         </div>
     </footer>
-    <!-- ¿QUITAR ESTO? -->
+    <!-- FIN FOOTER  -->
 
     </div>
 
