@@ -1,0 +1,54 @@
+/** HEADER */
+.fondosi {
+    background-color: #587993;
+}
+
+.fondosi a {
+    color: black;
+}
+
+.fondosi nav {
+    background-color: #587993;
+}
+
+.color {
+    color: cadetblue;
+}
+
+.navbar-dark .navbar-toggler {
+    color: rgba(255, 255, 255, .55);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+/*! FIN HEADER */
+
+/** INICIO BODY */
+.separcion5{
+    margin-top: 5em !important;
+}
+
+.fondo1{
+    background-color: rgba(88, 121, 147, 0.2);
+}
+
+.tit1{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin: 0 !important;
+}
+
+
+/*! FIN BODY */
