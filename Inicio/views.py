@@ -75,5 +75,5 @@ def salir(request):
 
 # Agregar horas medicas
 
-def registroHoras(request):
-    return render(request, 'Inicio/registro_horas.html')
+def crear_agenda(request):
+    return render(request, 'Inicio/crear_agenda.html')
