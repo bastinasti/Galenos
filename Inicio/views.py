@@ -73,3 +73,7 @@ def salir(request):
     return redirect('inicio')
 
 
+# Agregar horas medicas
+
+def registroHoras(request):
+    return render(request, 'Inicio/registro_horas.html')
