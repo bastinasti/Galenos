@@ -17,6 +17,10 @@ def registro(request):
 def registro2(request):
     return render(request, 'Inicio/Registro2/registro2.html')
 
+def registroUsuario(request):
+    return render(request, 'Inicio/registroUsuario/registroUsuario.html')
+
+
 def iniciosesion(request):
     return render (request, 'Inicio/InicioSesion/sesion.html')
 

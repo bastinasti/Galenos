@@ -30,18 +30,23 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Inicio</a>
             </li>
+            
+            
             {% if request.session.correo %}
             {{request.session.correo}} &nbsp;&nbsp; <a href="{% url 'salir' %}">Cerrar Sesion</a>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'iniciosesion' %}">Funcionarios</a>
+              <a class="nav-link active" href="{% url 'iniciosesion' %}">Funcionarios</a>
             </li>
             {% endif %}
 
             <li class="nav-item">
-              <a class="nav-link"
+              <a class="nav-link active"
                 href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!">Contactanos
                 💬</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'registroUsuario' %}">Registro</a>
             </li>
           </ul>
         </div>
