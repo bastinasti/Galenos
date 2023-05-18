@@ -44,7 +44,7 @@
 
             {% else %}
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'iniciosesion' %}">Funcionarios</a>
+              <a class="nav-link active" href="{% url 'iniciosesion' %}">Inicio Sesión</a>
             </li>
             {% endif %}
 
@@ -149,7 +149,7 @@
           <img src="{% static 'Inicio/img/inicio/icon2.png' %}" width="250" height="250">
           <h2>Horas Medicas</h2>
           <p></p>
-          <p><a class="btn btn-secondary" href="{% url 'registro' %}">Ver más... &raquo;</a></p>
+          <p><a class="btn btn-secondary" href="{% url 'registro' %}">Tomar Hora &raquo;</a></p>
         </div>
         <!--GATOS-->
         <div class="col-lg-4">
@@ -163,7 +163,7 @@
           <img src="{% static 'inicio/img/inicio/icon1.png' %}" alt="none" width="250" height="250">
           <h2>Examenes</h2>
           <p></p>
-          <p><a class="btn btn-secondary" href="{% url 'registro2' %}">Ver más... &raquo;</a></p>
+          <p><a class="btn btn-secondary disabled" href="{% url 'registro2' %}">Tomar Hora &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
