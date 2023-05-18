@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect 
-from .models import  Usuario, TipoUsuario, Paciente
+from .models import  Medico, Persona, Usuario, TipoUsuario, Paciente
 from django.contrib import messages
 from django.contrib.auth import logout 
 
@@ -76,4 +76,20 @@ def salir(request):
 # Agregar horas medicas
 
 def crear_agenda(request):
-    return render(request, 'Inicio/crear_agenda.html')
+    medicos = Medico.objects.all()
+    personas = []
+
+    for m in medicos:
+        persona = Persona.objects.get(rutPersona = m.rutMedico)
+        personas.append(persona)
+
+    contexto = {"personas" : personas}
+    return render(request, 'Inicio/crear_agenda.html', contexto)
+
+def agregar_dia(request):
+    rutMedico = request.POST['inputMedico']
+    fecha = request.POST['inputFecha']
+
+    print(fecha)
+
+    return redirect('crear_agenda')
