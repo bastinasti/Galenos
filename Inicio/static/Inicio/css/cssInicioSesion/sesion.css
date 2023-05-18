@@ -105,6 +105,11 @@ body {
   text-align: center;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: #535252 !important;
+  font-size: 20px;
+  margin-top: -50%;
+}
 .nav-item {
   color: #535252;
 }

@@ -32,8 +32,8 @@
               {% if request.session.correo %}
               {{request.session.correo}} &nbsp;&nbsp; <a href="{% url 'salir' %}">Cerrar Sesion</a>
               {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'inicio' %}" href="#">Inicio</a>
+                <li class="nav-item color">
+                  <a class="nav-link " href="{% url 'inicio' %}" href="#">Inicio</a>
                 </li>
               {% endif %}
             </ul>
