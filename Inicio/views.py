@@ -26,7 +26,7 @@ def iniciosesion(request):
 
 
 #Registrar Usuario
-
+    
 def registrar_usuario(request):
     repClave = request.POST['repClave']
 
@@ -44,11 +44,7 @@ def registrar_usuario(request):
         Usuario.objects.create(nombre = nombre, rut = rut, clave = clave, correo = correo ,idTipoUsuario = tipousuario)
         return redirect('inicio')
         
-        
-
-    
-
-
+ 
 
 def registrar_paciente(request):
 
