@@ -169,3 +169,16 @@ footer {
 .label{
     color: #fff;
 }
+
+.titul{
+	color: white;
+}
+
+#messages-container{
+	background-color: white;
+	border-radius: 1em;
+}
+
+.mensaje{
+	margin: 0;
+}

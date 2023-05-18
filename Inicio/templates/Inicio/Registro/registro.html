@@ -46,9 +46,24 @@
   <main class="main">
 
     <div class="container">
+
+
       <form class="row g-3 formulario" id="wrapper" action="{% url 'registrar_paciente' %}" method="POST"
         name="formulario">
         {% csrf_token %}
+
+        <div class="col-md-12 text-center">
+          <h3 class="titul">Pedir hora</h3>
+        </div>
+
+        {% if messages %}
+        <div id="messages-container">
+          {% for i in messages %}
+          <p style="color: rgb(255, 0, 0); text-align: center; font-size: 20px;" class="mensaje">
+            {{ i }} </p>
+          {% endfor %}
+        </div>
+        {% endif %}
 
         <div class="col-md-6">
           <label for="rut1" class="label">Rut:</label>
@@ -109,7 +124,6 @@
         <div class="col-md-6">
           <Label class="label">Seleccionar Fecha</Label>
           <input type="date" class="form-control" id="inputFecha" name="inputFecha">
-
         </div>
 
 
@@ -170,6 +184,16 @@
 
   </div>
 
+
+  <script>
+    // Obtener el contenedor de los mensajes
+    var messagesContainer = document.getElementById("messages-container");
+
+    // Mostrar los mensajes durante 5 segundos (5000 milisegundos)
+    setTimeout(function () {
+      messagesContainer.style.display = "none";
+    }, 5000);
+  </script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

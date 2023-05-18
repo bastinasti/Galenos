@@ -25,16 +25,8 @@
                 <div class="navbar-collapse collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
                         </li>
-                        {% if request.session.correo %}
-                        {{request.session.correo}} &nbsp;&nbsp; <a href="{% url 'salir' %}">Cerrar Sesion</a>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'iniciosesion' %}">Funcionarios</a>
-                        </li>
-                        {% endif %}
-
                         <li class="nav-item">
                             <a class="nav-link"
                                 href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!">Contactanos
@@ -54,6 +46,18 @@
 
                 <div class="col-md-2"></div>
                 <div class="col-md-8 fondo1">
+
+                    <div class="separacion1"></div>
+
+                    {% if messages %}
+                    <div id="messages-container">
+                        {% for i in messages %}
+                        <p style="color: rgb(255, 0, 0); text-align: center; font-size: 20px;">
+                            {{ i }} </p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
                     <h5 class="tit1 text-center">Generacion de agenda</h5>
 
                     <form action="{% url 'agregar_dia' %}" method="POST" class="row g-2">
@@ -61,7 +65,7 @@
 
                         <div class="col-md-12">
                             <label for="inputMedico" class="form-label">Medico</label>
-                            <select id="inputMedico" class="form-select" name="inputMedico">
+                            <select id="inputMedico" class="form-select" name="inputMedico" required>
                                 <option selected>Seleccionar Medico</option>
                                 {% for p in personas %}
                                 <option value="{{ p.rutPersona }}">{{ p.nomPersona }}</option>
@@ -71,7 +75,7 @@
 
                         <div class="col-md-12">
                             <label for="inputFecha" class="form-label">Dia</label>
-                            <input type="date" id="inputFecha" name="inputFecha" class="form-control">
+                            <input type="date" id="inputFecha" name="inputFecha" class="form-control" required>
                         </div>
 
                         <div class="col-md-12 separacion1"></div>
@@ -111,6 +115,15 @@
         </div>
     </main>
 
+    <script>
+        // Obtener el contenedor de los mensajes
+        var messagesContainer = document.getElementById("messages-container");
+
+        // Mostrar los mensajes durante 5 segundos (5000 milisegundos)
+        setTimeout(function() {
+            messagesContainer.style.display = "none";
+        }, 5000);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>

@@ -87,3 +87,10 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class Agenda(models.Model):
+    idAgenda = models.AutoField(primary_key = True, verbose_name = "Id agenda")
+    rutPersona = models.CharField(max_length = 10, verbose_name = "Rut de la persona que es el doctor")
+    fechaDisp = models.CharField(max_length = 8,verbose_name = "Fecha de atencion disponible")
+    horaDisp = models.CharField(max_length = 8,verbose_name = "hora de atencion disponible")
+    estado = models.CharField(max_length = 50, verbose_name = "estado de la hora")

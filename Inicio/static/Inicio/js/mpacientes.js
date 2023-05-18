@@ -1,41 +1,56 @@
-// Supongamos que tienes un array de objetos con la información de los pacientes
-var pacientes = [
-    { hora: '09:00', doctor: 'Dr. Pérez', paciente: 'Juan Pérez' },
-    { hora: '10:30', doctor: 'Dr. Gómez', paciente: 'María Gómez' },
-    { hora: '11:45', doctor: 'Dra. Rodríguez', paciente: 'Ana Rodríguez' },
-    // ...
-  ];
+$(document).ready(function() {
+    // Obtener datos de la base de datos mediante AJAX
+    $.ajax({
+      url: '/obtener_pacientes/',  // el url para obtener el paciente (nose cual es)
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        // Llamar a la función para mostrar los pacientes con los datos obtenidos
+        crearFilasPacientes(data);
+      },
+      error: function() {
+        alert('Error al obtener los pacientes.');
+      }
+    });
+  });
   
-  // Función para crear las filas del visualizador de pacientes
-  function crearFilasPacientes() {
-    var visualizador = document.getElementById('visualizador');
+  function crearFilasPacientes(pacientes) {
+    var tablaPacientes = document.getElementById('tablaPacientes');
   
     // Limpiar contenido existente
-    visualizador.innerHTML = '';
+    tablaPacientes.innerHTML = '';
+  
+    // Obtener la hora actual del computador
+    var horaActual = new Date();
   
     // Crear una fila por cada paciente en el array
     pacientes.forEach(function(paciente) {
-      var fila = document.createElement('div');
-      fila.className = 'fila';
+      // Convertir la hora de atención en un objeto Date
+      var horaAtencion = new Date(paciente.hora);
   
-      // Crear celdas para cada columna y asignarles el contenido del paciente
-      var horaCelda = document.createElement('div');
-      horaCelda.className = 'columna';
-      horaCelda.textContent = paciente.hora;
-      fila.appendChild(horaCelda);
+      // Comparar la hora de atención con la hora actual + 5 horas
+      var horaLimite = new Date();
+      horaLimite.setHours(horaLimite.getHours() + 5);
   
-      var doctorCelda = document.createElement('div');
-      doctorCelda.className = 'columna';
-      doctorCelda.textContent = paciente.doctor;
-      fila.appendChild(doctorCelda);
+      if (horaAtencion >= horaActual && horaAtencion <= horaLimite) {
+        var fila = document.createElement('tr');
   
-      var pacienteCelda = document.createElement('div');
-      pacienteCelda.className = 'columna';
-      pacienteCelda.textContent = paciente.paciente;
-      fila.appendChild(pacienteCelda);
+        // Crear celdas para cada columna y asignarles el contenido del paciente
+        var horaCelda = document.createElement('td');
+        horaCelda.textContent = paciente.hora;
+        fila.appendChild(horaCelda);
   
-      // Agregar la fila al visualizador
-      visualizador.appendChild(fila);
+        var doctorCelda = document.createElement('td');
+        doctorCelda.textContent = paciente.doctor;
+        fila.appendChild(doctorCelda);
+  
+        var pacienteCelda = document.createElement('td');
+        pacienteCelda.textContent = paciente.paciente;
+        fila.appendChild(pacienteCelda);
+  
+        // Agregar la fila a la tabla
+        tablaPacientes.appendChild(fila);
+      }
     });
   }
   

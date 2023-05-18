@@ -21,7 +21,7 @@ especialidadSelect.addEventListener("change", function () {
     option3.value = "3";
     option.textContent = "Claudio Opazo";
     option2.textContent = "Jorge Zabaleta";
-    option3.textContent = "Pancho Sabedra";
+    option3.textContent = "Pancho Saavedra";
     medicoSelect.appendChild(option);
     medicoSelect.appendChild(option2);
     medicoSelect.appendChild(option3);
