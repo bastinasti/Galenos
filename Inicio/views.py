@@ -26,7 +26,7 @@ def iniciosesion(request):
 
 
 #Registrar Usuario
-
+    
 def registrar_usuario(request):
     repClave = request.POST['repClave']
 
@@ -44,11 +44,7 @@ def registrar_usuario(request):
         Usuario.objects.create(nombre = nombre, rut = rut, clave = clave, correo = correo ,idTipoUsuario = tipousuario)
         return redirect('inicio')
         
-        
-
-    
-
-
+ 
 
 def registrar_paciente(request):
 
@@ -67,10 +63,12 @@ def iniciar_sesion(request):
     if request.method == 'POST':
         try:
             usuario = Usuario.objects.get(correo = request.POST['correoinicio'], clave = request.POST['contrainicio'])
+            
             request.session['correo'] = usuario.correo
+            request.session['nombre'] = usuario.nombre
            
             if (usuario.idTipoUsuario.idTipoUsuario == 1):
-                return render(request, 'Inicio/Admin/pag_admin.html')
+                return render(request, 'Inicio/DelanekoShop.html')
             else:
                 contexto = {"usuario":usuario}
                 return render(request, 'Inicio/DelanekoShop.html')
