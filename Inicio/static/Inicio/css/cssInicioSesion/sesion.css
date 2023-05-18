@@ -1,6 +1,6 @@
 body {
   height: 100%;
-  background-image: url(../../../Inicio/img/InicioSesion/diego.jpg);
+  background-image: url(../../../Inicio/img/InicioSesion/hosp.jpg);
   background-size: cover;
   background-attachment: fixed;
 
@@ -105,6 +105,11 @@ body {
   text-align: center;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: #535252 !important;
+  font-size: 20px;
+  margin-top: -50%;
+}
 .nav-item {
   color: #535252;
 }
@@ -146,6 +151,6 @@ body {
 }
 
 .hola{
-  background-color:rgba(3, 13, 18, 0.603);
+  background-color: #384d5ee7;
 }
 
