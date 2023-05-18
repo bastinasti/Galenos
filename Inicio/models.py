@@ -79,7 +79,7 @@ class TipoUsuario(models.Model):
 class Usuario(models.Model):
     idUsuario = models.AutoField(primary_key = True, verbose_name = "Id usuarios")
     nombre = models.CharField(max_length = 15, verbose_name = "Nombre Cliente")
-    apellido = models.CharField(max_length = 15, verbose_name = "Apellido Cliente")
+    rut = models.CharField(max_length = 10, verbose_name = "Rut del paciente")
     clave = models.CharField(max_length = 16, verbose_name = "Contraseña", blank = False, null = False)
     correo = models.CharField(max_length = 40, verbose_name = "Correo")
     idTipoUsuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)

@@ -28,15 +28,27 @@ def iniciosesion(request):
 #Registrar Usuario
 
 def registrar_usuario(request):
-    
+    repClave = request.POST['repClave']
+
     nombre = request.POST['nombre']
-    apellido1 = request.POST['apellido1']
-    email = request.POST['email']
-    con1 = request.POST['con1']
-    tipousuario = TipoUsuario.objects.get(idTipoUsuario = 2)
+    rut = request.POST['rut']
+    clave = request.POST['clave']
+    correo = request.POST['correo']
     
-    Usuario.objects.create(nombre = nombre, apellido = apellido1, clave = con1, correo = email ,idTipoUsuario = tipousuario)
-    return redirect('inicio')
+    
+    if(clave != repClave):
+        messages.success(request,'Las contraseñas deben coincidir')
+        return redirect('registroUsuario')
+    else:
+        tipousuario = TipoUsuario.objects.get(idTipoUsuario = 2)
+        Usuario.objects.create(nombre = nombre, rut = rut, clave = clave, correo = correo ,idTipoUsuario = tipousuario)
+        return redirect('inicio')
+        
+        
+
+    
+
+
 
 def registrar_paciente(request):
 
