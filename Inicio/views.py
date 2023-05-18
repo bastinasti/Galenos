@@ -1,6 +1,6 @@
-from datetime import date
+from datetime import date, datetime
 from django.shortcuts import render, redirect
-from .models import Medico, Persona, Usuario, TipoUsuario, Paciente
+from .models import Medico, Persona, Usuario, TipoUsuario, Paciente, Agenda
 from django.contrib import messages
 from django.contrib.auth import logout
 
@@ -132,13 +132,22 @@ def agregar_dia(request):
     # * OBTENER FECHA ACTUAL
     fecha_actual = date.today()
 
+    fecha2 = datetime.strptime(fecha, "%Y-%m-%d")
     # Convertir la fecha ingresada en el formulario a objeto de fecha
     fecha_ingresada = date.fromisoformat(fecha)
 
     if fecha_ingresada >= fecha_actual:
         # La fecha ingresada es igual o mayor que la fecha actual
         # Realiza la lógica adicional aquí
-        
+        fecha_formateada = fecha2.strftime("%d/%m/%y")
+
+        existeeee = Agenda.objects.filter(rutPersona = rutMedico, fechaDisp = fecha_formateada, horaDisp = hora)
+
+        if existeeee:
+            messages.error(request, "la fecha y hora que se quiere registrar ya existe")
+        else:
+            Agenda.objects.create(rutPersona = rutMedico, fechaDisp = fecha_formateada, horaDisp = hora, estado = 'Disponible')
+            messages.success(request, "Se genero la fecha con exito")
     else:
         # La fecha ingresada es menor que la fecha actual
         # Maneja el error o muestra un mensaje al usuario
