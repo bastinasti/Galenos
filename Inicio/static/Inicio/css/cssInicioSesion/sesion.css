@@ -1,6 +1,6 @@
 body {
   height: 100%;
-  background-image: url(../../../Inicio/img/InicioSesion/diego.jpg);
+  background-image: url(../../../Inicio/img/InicioSesion/hosp.jpg);
   background-size: cover;
   background-attachment: fixed;
 
@@ -146,6 +146,6 @@ body {
 }
 
 .hola{
-  background-color:rgba(3, 13, 18, 0.603);
+  background-color: #384d5ee7;
 }
 
