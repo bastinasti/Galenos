@@ -46,9 +46,15 @@
   <main class="main">
 
     <div class="container">
-      <form class="row g-3 formulario" id="wrapper" action="{% url 'registrar_paciente' %}" method="POST" enctype="multipart/form-data"
-        name="formulario">
+      <form class="row g-3 formulario" id="wrapper" action="{% url 'registrar_paciente' %}" method="POST"
+        enctype="multipart/form-data" name="formulario">
         {% csrf_token %}
+
+        <div class="col-md-6">
+          <label for="rut1" class="label">Rut:</label>
+          <input type="text" required class="form-control formulario__input" name="rut1" id="rut1"
+            placeholder="207083208">
+        </div>
 
         <div class="col-md-6">
           <label for="prevision1" class="label">Previsión:</label>
@@ -68,26 +74,26 @@
           </select>
         </div>
 
-        
+
 
         <div class="col-md-6 formulario__grupo" id="grupo__ap1">
           <label for="especialidad1" class="label">Especialidad:</label>
-            <select type="text" required class="form-control formulario__input" name="especialidad1" id="select1">
-              <option value=""> Seleccionar</option>
-              <option value="1">Medicina General </option>
-              <option value="2">Cardiologia</option>
-              <option value="3">Dermatologia</option>
-            </select>
+          <select type="text" required class="form-control formulario__input" name="especialidad1" id="select1">
+            <option value="">Seleccionar</option>
+            <option value="1">Medicina General</option>
+            <option value="2">Cardiología</option>
+            <option value="3">Dermatología</option>
+          </select>
         </div>
 
         <div class="col-md-6 formulario__grupo" id="grupo__ap1">
-          <label for="medico1" class="label">Medico:</label>
-            <select type="text" required class="form-control formulario__input" name="medico1" id="select2">
-              <option value="">Seleccionar</option>
-              <option value="1">Manuel reyes</option>
-              <option value="2">Maria Gonzales</option>
-              <option value="3">Leonardo Dicaprio</option>
-            </select>
+          <label for="medico1" class="label">Médico:</label>
+          <select type="text" required class="form-control formulario__input" name="medico1" id="select2">
+            <option value="">Seleccionar</option>
+            <option value="1" class="medicina-general">Manuel Reyes</option>
+            <option value="2" class="cardiologia">Maria Gonzales</option>
+            <option value="3" class="dermatologia">Leonardo Dicaprio</option>
+          </select>
         </div>
 
         <div class="col-md-6">
@@ -101,10 +107,12 @@
         </div>
 
         <div class="col-md-6">
-          <label for="rut1" class="label">Rut:</label>
-          <input type="text" required class="form-control formulario__input" name="rut1" id="rut1"
-            placeholder="207083208">
+          <Label class="label">Seleccionar Fecha</Label>
+          <input type="date" class="form-control" id="inputFecha" name="inputFecha">
+          
         </div>
+
+
 
         <div class="container">
           <div class="row">
@@ -115,7 +123,7 @@
               <button class="boton dos"><span>Confirmar</span></button>
             </div>
             <div class="col-md-4">
-              
+
             </div>
           </div>
         </div>
@@ -124,7 +132,7 @@
 
 
 
-        
+
 
       </form>
     </div>
@@ -132,7 +140,7 @@
 
 
 
-    
+
 
   </main>
 
@@ -144,7 +152,7 @@
   </div>
 
 
-  
+
 
 
   <footer class="container">
@@ -174,6 +182,7 @@
   <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 
   <script src="{% static 'Inicio/js/otro.js' %}"></script>
+  <script src="{% static 'Inicio/js/toma_hora.js' %}"></script>
 
 </body>
 
