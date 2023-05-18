@@ -32,8 +32,8 @@
               {% if request.session.correo %}
               {{request.session.correo}} &nbsp;&nbsp; <a href="{% url 'salir' %}">Cerrar Sesion</a>
               {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'inicio' %}" href="#">Inicio</a>
+                <li class="nav-item color">
+                  <a class="nav-link " href="{% url 'inicio' %}" href="#">Inicio</a>
                 </li>
               {% endif %}
             </ul>
@@ -48,8 +48,8 @@
     <form method="post" action="{% url 'iniciar_sesion' %}">
       {% csrf_token %}
       <div class="xd">
-        <img class="mb-4" src="../../../static/Inicio/img/inicio/galenoctm.png" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Inicio de sesion</h1>
+        <img class="mb-4" src="{% static 'inicio/img/InicioSesion/hospital.png' %}" alt="" width="72" height="57">
+        <h3 class="h3 mb-3 fw-normal">Inicio de sesion</h3>
       </div>
       <div class="form-floating">
         <input type="email" required class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com"
@@ -67,13 +67,13 @@
           <input type="checkbox" value="remember-me"> Recuerdame
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+      <button class="w-100 btn btn-lg btn-secondary" type="submit">Entrar</button>
       <div class="pp">
         <a class="colorcolor" href="{% url 'registro' %}">Regristate</a>
       </div>
       {% if messages %} <div> {% for i in messages %} <p> {{ i }} </p> {% endfor %} </div> {% endif %}
-      <div class="color">
-        <p class="mt-5 mb-3">&copy; 2022</p>
+      <div class="pp">
+        <p class="mt-5 mb-3 colorcolor">&copy; 2022</p>
       </div>
     </form>
   </main>
