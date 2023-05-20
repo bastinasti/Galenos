@@ -27,6 +27,8 @@ def registroUsuario(request):
 def iniciosesion(request):
     return render(request, "Inicio/InicioSesion/sesion.html")
 
+def monitoPaciente(request):
+    return render(request, "Inicio/MonitorPaciente/visualPaciente.html")
 
 # Registrar Usuario
 
