@@ -43,7 +43,8 @@ def registrar_usuario(request):
 
     if clave != repClave:
         messages.success(request, "Las contraseñas deben coincidir")
-        return redirect("registroUsuario")
+        return redirect("inicio")
+
     else:
         tipousuario = TipoUsuario.objects.get(idTipoUsuario=2)
         Usuario.objects.create(
@@ -53,7 +54,7 @@ def registrar_usuario(request):
             correo=correo,
             idTipoUsuario=tipousuario,
         )
-        return redirect("inicio")
+        return redirect("iniciosesion")
 
 
 def registrar_paciente(request):
