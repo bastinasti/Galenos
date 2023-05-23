@@ -90,11 +90,12 @@ def iniciar_sesion(request):
             usuario = Usuario.objects.get(
                 correo=request.POST["correoinicio"], clave=request.POST["contrainicio"]
             )
-
+            
             request.session["correo"] = usuario.correo
             request.session["nombre"] = usuario.nombre
 
             if usuario.idTipoUsuario.idTipoUsuario == 1:
+                print('si entro')
                 return render(request, "Inicio/DelanekoShop.html")
             else:
                 contexto = {"usuario": usuario}
