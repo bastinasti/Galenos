@@ -32,9 +32,9 @@
               {% if request.session.correo %}
               {{request.session.correo}} &nbsp;&nbsp; <a href="{% url 'salir' %}">Cerrar Sesion</a>
               {% else %}
-                <li class="nav-item color">
-                  <a class="nav-link " href="{% url 'inicio' %}" href="#">Inicio</a>
-                </li>
+              <li class="nav-item color">
+                <a class="nav-link " href="{% url 'inicio' %}" href="#">Inicio</a>
+              </li>
               {% endif %}
             </ul>
           </div>
@@ -51,6 +51,15 @@
         <img class="mb-4" src="{% static 'inicio/img/InicioSesion/hospital.png' %}" alt="" width="72" height="57">
         <h3 class="h3 mb-3 fw-normal">Inicio de sesion</h3>
       </div>
+
+      {% if messages %}
+      <div id="messages-container" style="color: red; background-color: white; border-radius: 1em;">
+        {% for i in messages %}
+        <p style="padding: 0.5em;"> {{ i }} </p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
       <div class="form-floating">
         <input type="email" required class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com"
           name="correoinicio" id="correoinicio">
@@ -71,17 +80,26 @@
       <div class="pp">
         <a class="colorcolor" href="{% url 'registro' %}">Regristate</a>
       </div>
-      {% if messages %} <div> {% for i in messages %} <p> {{ i }} </p> {% endfor %} </div> {% endif %}
+
       <div class="pp">
         <p class="mt-5 mb-3 colorcolor">&copy; 2022</p>
       </div>
     </form>
   </main>
-  <a href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!." class="float" target="_blank">
+  <a href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!."
+    class="float" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
   </a>
 
+  <script>
+    // Obtener el contenedor de los mensajes
+    var messagesContainer = document.getElementById("messages-container");
 
+    // Mostrar los mensajes durante 5 segundos (5000 milisegundos)
+    setTimeout(function () {
+      messagesContainer.style.display = "none";
+    }, 5000);
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
     integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
     crossorigin="anonymous"></script>

@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from .models import Medico, Persona, Usuario, TipoUsuario, Paciente, Agenda
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.hashers import check_password, make_password
 
 
 # Create your views here.
@@ -86,26 +88,49 @@ def registrar_paciente(request):
 
 
 def iniciar_sesion(request):
-    if request.method == "POST":
-        try:
-            usuario = Usuario.objects.get(
-                correo=request.POST["correoinicio"], clave=request.POST["contrainicio"]
-            )
-            
-            request.session["correo"] = usuario.correo
-            request.session["nombre"] = usuario.nombre
+    correo  =request.POST["correoinicio"]
+    clave = request.POST["contrainicio"]
 
-            if usuario.idTipoUsuario.idTipoUsuario == 1:
-                print('si entro')
-                return render(request, "Inicio/DelanekoShop.html")
-            else:
-                contexto = {"usuario": usuario}
-                return render(request, "Inicio/DelanekoShop.html")
-        except Usuario.DoesNotExist as e:
-            messages.error(request, "Nombre de usuario o contraseña incorrecta...")
+    try:
+        usuario = Usuario.objects.get(correo=correo, clave=clave)
+    
+        if clave == usuario.clave:
+            print('si entro')
+            tipo = TipoUsuario.objects.get(idTipoUsuario=usuario.idTipoUsuario)
+            print(tipo)
 
-    return render(request, "Inicio/InicioSesion/sesion.html")
+            return redirect('inicio')
+        else:
+            messages.error(request, "Correo o Contraseña incorrecta..")
+            print('no entro')
+    except ObjectDoesNotExist:
+        messages.error(request, "Correo o Contraseña incorrecta...")
+    
+    return redirect('iniciosesion')
 
+# def validarinicio(request):
+#     correo = request.POST['email']
+#     password = request.POST['password']
+
+#     try:
+#         u = usuario.objects.get(correo=correo, contrasena=password)
+#         if not u:
+#             return redirect('/Principal/inicio-sesi.html')
+        
+#         else:
+#             rol = usuario_has_tipo.objects.get(id_usuario = u.id_usuario)
+#             request.session['correo'] = u.correo
+
+#             r = tipo_usuario.objects.get(nom_tipo = rol.id_tipo)
+
+#             request.session['alfin'] = r.nom_tipo
+#             request.session['nombre'] = u.nombres
+
+#             messages.success(request, 'Bienvenido ' + u.nombres)
+#             return redirect('inicio')
+#     except:
+#         messages.error(request, 'Usuario o contraseña incorrectos')
+#         return redirect('inicio_sesi')
 
 def salir(request):
     logout(request)
