@@ -43,20 +43,39 @@ def registrar_usuario(request):
     clave = request.POST["clave"]
     correo = request.POST["correo"]
 
-    if clave != repClave:
+    if (clave != repClave):
         messages.success(request, "Las contraseñas deben coincidir")
-        return redirect("inicio")
-
-    else:
+        return redirect("registroUsuario")
+    
+    elif (len(rut) != 10):
+        messages.success(request, "El rut debe tener el siguiente formato 12345678-9")
+        return redirect("registroUsuario")
+    
+    elif (rut.find("-") == -1):
+        messages.success(request, "El rut debe ir sin puntos y con guión")
+        return redirect("registroUsuario")
+    
+    elif (len(clave) != 8):
+        messages.success(request, "La contraseña debe tener una longitud de 8 caracteres")
+        return redirect("registroUsuario")
+    
+    elif (len(clave) == 8):
+        
         tipousuario = TipoUsuario.objects.get(idTipoUsuario=2)
         Usuario.objects.create(
-            nombre=nombre,
-            rut=rut,
-            clave=clave,
-            correo=correo,
-            idTipoUsuario=tipousuario,
+        nombre=nombre,
+        rut=rut,
+        clave=clave,
+        correo=correo,
+        idTipoUsuario=tipousuario,
         )
         return redirect("iniciosesion")
+    else:
+        messages.success(request, "Ingresó mal un dato, vuelva a revisar")
+        return redirect("registroUsuario")
+
+
+        
 
 
 def registrar_paciente(request):
