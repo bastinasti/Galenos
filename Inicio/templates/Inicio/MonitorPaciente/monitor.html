@@ -1,0 +1,29 @@
+{% extends 'Inicio/MonitorPaciente/visualPaciente.html' %}
+
+{% load static %}
+
+
+
+{% block pacientes %}
+{% for a in Paciente %}
+<div class="container">
+    <div id="visualizador">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Hora de atención</th>
+              <th>Doctor</th>
+              <th>Paciente</th>
+            </tr>
+            <tr>
+                <th>Hora de atención</th>
+                <th>Doctor</th>
+                <th>Paciente</th>
+              </tr>
+          </thead>
+          <tbody id="tablaPacientes"></tbody>
+        </table>
+    </div>
+</div>
+{% endfor %}
+{% endblock pacientes %}

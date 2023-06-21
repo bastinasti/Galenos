@@ -30,10 +30,10 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Inicio</a>
             </li>
-            
+
             {% if request.session.correo %}
             <li class="nav-item">
-              <a class="nav-link active" >Bienvenido {{request.session.nombre}}</a>
+              <a class="nav-link active">Bienvenido {{request.session.nombre}}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'salir' %}">Cerrar Sesion</a>
@@ -43,21 +43,50 @@
               <a class="nav-link active" href="{% url 'iniciosesion' %}">Inicio Sesión</a>
             </li>
             {% endif %}
-            
+
             <li class="nav-item">
               <a class="nav-link active"
                 href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!">Contactanos
                 💬</a>
             </li>
+
+            {% if request.session.correo %}
+            {% else %}
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'registroUsuario' %}">Registro</a>
             </li>
+            {% endif %}
+
+            {% if request.session.correo %}
             <li class="nav-item">
+              {% if request.session.alfin == 'cliente' %}
+              <a class="nav-link active" href="{% url 'misHoras' %}">Mis Horas</a>
+              {% else %}
+              {% endif %}
+            </li>
+            {% else %}
+            {% endif %}
+
+            {% if request.session.correo %}
+            <li class="nav-item">
+              {% if request.session.alfin == 'secretaria' %}
               <a class="nav-link active" href="{% url 'crear_agenda' %}">Generar Agenda</a>
+              {% else %}
+              {% endif %}
             </li>
+            {% else %}
+            {% endif %}
+
+
+            {% if request.session.correo %}
             <li class="nav-item">
+              {% if request.session.alfin == 'medico' %}
               <a class="nav-link active" href="{% url 'monitoPaciente' %}">Monitor de Pacientes</a>
+              {% else %}
+              {% endif %}
             </li>
+            {% else %}
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -151,7 +180,7 @@
           <img src="{% static 'Inicio/img/inicio/icon2.png' %}" width="250" height="250">
           <h2>Horas Medicas</h2>
           <p></p>
-          <p><a class="btn btn-secondary" href="{% url 'registro' %}">Tomar Hora &raquo;</a></p>
+          <p><a class="btn btn-secondary" href="{% url 'especialidad' %}">Tomar Hora &raquo;</a></p>
         </div>
         <!--GATOS-->
         <div class="col-lg-4">
@@ -202,19 +231,18 @@
           </div>
         </div>
         <div class="col-md-5 order-md-1">
-          <img src="{% static 'Inicio/img/inicio/mision.jpg' %}" alt="none" width="100%"
-            height="100%">
+          <img src="{% static 'Inicio/img/inicio/mision.jpg' %}" alt="none" width="100%" height="100%">
         </div>
       </div>
 
       <hr class="featurette-divider">
 
 
-      
 
 
 
-      
+
+
 
       <!-- /END THE FEATURETTES -->
 
@@ -225,8 +253,8 @@
 
     <footer class="container">
       <p class="float-end"><a href="#">Principio</a></p>
-      <p>&copy; 2023 Dos Alamos. &middot; <a
-          href="https://www.youtube.com/watch?v=poa_QBvtIBA" >Instagram</a> &middot; <a href="https://www.youtube.com/watch?v=JlA81oXYKUg">Youtube</a></p>
+      <p>&copy; 2023 Dos Alamos. &middot; <a href="https://www.youtube.com/watch?v=poa_QBvtIBA">Instagram</a> &middot;
+        <a href="https://www.youtube.com/watch?v=JlA81oXYKUg">Youtube</a></p>
     </footer>
 
 

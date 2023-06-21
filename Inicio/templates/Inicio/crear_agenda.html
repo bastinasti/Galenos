@@ -16,7 +16,7 @@
     <header class="fondosi">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'inicio' %}">Dos alamos</a>
+                <a class="navbar-brand" href="#">Dos Alamos</a>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -25,13 +25,66 @@
                 <div class="navbar-collapse collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                         </li>
+
+                        {% if request.session.correo %}
+                        <li class="nav-item">
+                            <a class="nav-link active">Bienvenido {{request.session.nombre}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'salir' %}">Cerrar Sesion</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'iniciosesion' %}">Inicio Sesión</a>
+                        </li>
+                        {% endif %}
+
                         <li class="nav-item">
                             <a class="nav-link active"
                                 href="https://api.whatsapp.com/send?phone=+56921908673&text=Hola%21%20Quisiera%20más%20información%20sobre%20los%20productos!">Contactanos
                                 💬</a>
                         </li>
+
+                        {% if request.session.correo %}
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="{% url 'registroUsuario' %}">Registro</a>
+                        </li>
+                        {% endif %}
+
+                        {% if request.session.correo %}
+                        <li class="nav-item">
+                            {% if request.session.alfin == 'cliente' %}
+                            <a class="nav-link active" href="{% url 'misHoras' %}">Mis Horas</a>
+                            {% else %}
+                            {% endif %}
+                        </li>
+                        {% else %}
+                        {% endif %}
+
+                        {% if request.session.correo %}
+                        <li class="nav-item">
+                            {% if request.session.alfin == 'secretaria' %}
+                            <a class="nav-link active" href="{% url 'crear_agenda' %}">Generar Agenda</a>
+                            {% else %}
+                            {% endif %}
+                        </li>
+                        {% else %}
+                        {% endif %}
+
+
+                        {% if request.session.correo %}
+                        <li class="nav-item">
+                            {% if request.session.alfin == 'medico' %}
+                            <a class="nav-link active" href="{% url 'monitoPaciente' %}">Monitor de Pacientes</a>
+                            {% else %}
+                            {% endif %}
+                        </li>
+                        {% else %}
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -67,8 +120,8 @@
                             <label for="inputMedico" class="form-label">Medico</label>
                             <select id="inputMedico" class="form-select" name="inputMedico" required>
                                 <option selected>Seleccionar Medico</option>
-                                {% for p in personas %}
-                                <option value="{{ p.rutPersona }}">{{ p.nomPersona }}</option>
+                                {% for m in medicos %}
+                                <option value="{{ m.idUsuario.rut }}">{{ m.idUsuario.nombre }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -120,7 +173,7 @@
         var messagesContainer = document.getElementById("messages-container");
 
         // Mostrar los mensajes durante 5 segundos (5000 milisegundos)
-        setTimeout(function() {
+        setTimeout(function () {
             messagesContainer.style.display = "none";
         }, 5000);
     </script>

@@ -1,21 +1,33 @@
 from datetime import date, datetime
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from .models import Medico, Persona, Usuario, TipoUsuario, Paciente, Agenda
+from .models import Medico, MedicoEspec, Usuario, TipoUsuario, Paciente, Agenda, Prevision, Especialidad, horaS
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.hashers import check_password, make_password
 
 
-# Create your views here.
+#* --------------------------------------------------------------------- ---- Paginas ---- ---------------------------------------------------------------------
 
 
 def inicio(request):
     return render(request, "Inicio/DelanekoShop.html")
 
 
-def registro(request):
-    return render(request, "Inicio/Registro/registro.html")
+def obtener_medicos(request):
+    especialidad_id = request.GET.get('especialidad', None)
+    medicos = Medico.objects.filter(medicoespec__idEspe_id=especialidad_id)
+    
+    medicos_data = [{'id': medico.idMedico, 'nombre': medico.idUsuario.nombre} for medico in medicos]
+    return JsonResponse({'medicos': medicos_data})
+
+def especialidad(request):
+    espe = Especialidad.objects.all()
+    medicos = Medico.objects.all()
+    espeM = MedicoEspec.objects.all()
+    context = {'espe' : espe, 'medicos' : medicos, 'espeM' : espeM}
+    return render(request, "Inicio/Registro/especialidades.html",context)
 
 
 def registro2(request):
@@ -30,10 +42,11 @@ def iniciosesion(request):
     return render(request, "Inicio/InicioSesion/sesion.html")
 
 def monitoPaciente(request):
-    return render(request, "Inicio/MonitorPaciente/visualPaciente.html")
+    pac = Paciente.objects.all()
+    contexto = {'pac': pac }
+    return render(request, "Inicio/MonitorPaciente/monitor.html", contexto)
 
-# Registrar Usuario
-
+#* --------------------------------------------------------------------- ---- Registrar paciente ---- ---------------------------------------------------------------------
 
 def registrar_usuario(request):
     repClave = request.POST["repClave"]
@@ -75,7 +88,7 @@ def registrar_usuario(request):
         return redirect("registroUsuario")
 
 
-        
+#* --------------------------------------------------------------------- ---- Registrar paciente ---- ---------------------------------------------------------------------        
 
 
 def registrar_paciente(request):
@@ -105,6 +118,7 @@ def registrar_paciente(request):
 
     return redirect("registro")
 
+#* --------------------------------------------------------------------- ---- Inicio de Sesión ---- ---------------------------------------------------------------------
 
 def iniciar_sesion(request):
     correo  =request.POST["correoinicio"]
@@ -115,8 +129,10 @@ def iniciar_sesion(request):
     
         if clave == usuario.clave:
             print('si entro')
-            tipo = TipoUsuario.objects.get(idTipoUsuario=usuario.idTipoUsuario)
-            print(tipo)
+            request.session['correo'] = usuario.correo
+            tipo = TipoUsuario.objects.get(nombreTipo=usuario.idTipoUsuario)
+            request.session['alfin'] = tipo.nombreTipo
+            request.session['nombre'] = usuario.nombre
 
             return redirect('inicio')
         else:
@@ -127,31 +143,12 @@ def iniciar_sesion(request):
     
     return redirect('iniciosesion')
 
-# def validarinicio(request):
-#     correo = request.POST['email']
-#     password = request.POST['password']
-
-#     try:
-#         u = usuario.objects.get(correo=correo, contrasena=password)
-#         if not u:
-#             return redirect('/Principal/inicio-sesi.html')
-        
-#         else:
-#             rol = usuario_has_tipo.objects.get(id_usuario = u.id_usuario)
-#             request.session['correo'] = u.correo
-
-#             r = tipo_usuario.objects.get(nom_tipo = rol.id_tipo)
-
-#             request.session['alfin'] = r.nom_tipo
-#             request.session['nombre'] = u.nombres
-
-#             messages.success(request, 'Bienvenido ' + u.nombres)
-#             return redirect('inicio')
-#     except:
-#         messages.error(request, 'Usuario o contraseña incorrectos')
-#         return redirect('inicio_sesi')
+#* --------------------------------------------------------------------- ---- Cerrar sesión ---- ---------------------------------------------------------------------
 
 def salir(request):
+    del request.session['correo']
+    del request.session['alfin']
+    del request.session['nombre']
     logout(request)
     messages.success(request, "Sesion cerrada exitosamente")
     return redirect("inicio")
@@ -159,18 +156,15 @@ def salir(request):
 
 # Agregar horas medicas
 
+#* --------------------------------------------------------------------- ---- Crear agenda ---- ---------------------------------------------------------------------
 
 def crear_agenda(request):
     medicos = Medico.objects.all()
-    personas = []
-
-    for m in medicos:
-        persona = Persona.objects.get(rutPersona=m.rutMedico)
-        personas.append(persona)
-
-    contexto = {"personas": personas}
+  
+    contexto = {"medicos": medicos}
     return render(request, "Inicio/crear_agenda.html", contexto)
 
+#* --------------------------------------------------------------------- ----  ---- ---------------------------------------------------------------------
 
 def agregar_dia(request):
     rutMedico = request.POST["inputMedico"]
@@ -188,8 +182,8 @@ def agregar_dia(request):
         # La fecha ingresada es igual o mayor que la fecha actual
         # Realiza la lógica adicional aquí
         fecha_formateada = fecha2.strftime("%d/%m/%y")
-
-        existeeee = Agenda.objects.filter(rutPersona = rutMedico, fechaDisp = fecha_formateada, horaDisp = hora)
+        med = Usuario.objects.get(rut = rutMedico)
+        existeeee = Agenda.objects.filter(idMedico = rutMedico, fechaDisp = fecha_formateada, horaDisp = hora)
 
         if existeeee:
             messages.error(request, "la fecha y hora que se quiere registrar ya existe")
@@ -202,3 +196,32 @@ def agregar_dia(request):
         messages.error(request, "La fecha ingresa ya paso segun calendario, porfavor seleccione el dia de hoy u otra proxima")
 
     return redirect('crear_agenda')
+
+#* --------------------------------------------------------------------- ---- Mis horas ---- ---------------------------------------------------------------------
+def misHoras(request):
+    try:
+        correo = request.session['correo']
+        usuarios = Usuario.objects.get(correo = correo)
+        hor = horaS.objects.filter(rutPaciente = usuarios.rut)
+        if hor:
+            contexto = {'hor' : hor}
+            return render(request, "Inicio/misHoras/misHoras.html", contexto)
+        else:
+            return render(request, "Inicio/misHoras/misHoras.html")
+    except:
+        return redirect('iniciosesion')
+    
+#* --------------------------------------------------------------------- ---- Mostrar doctores ---- ---------------------------------------------------------------------
+def doctores(request, idEspe):
+    med = MedicoEspec.objects.filter(idEspe = idEspe)
+    contexto = {'med' : med}
+    return render(request, "Inicio/registro/doctores.html", contexto)
+
+def horasDisp(request, idMedico):
+    try:
+        horasm = Agenda.objects.get(idMedico = idMedico)
+        contexto = {'horasm' : horasm}
+
+        return render(request, "Inicio/horasDoc.html", contexto)
+    except:
+        return render(request, "Inicio/horasDoc.html")

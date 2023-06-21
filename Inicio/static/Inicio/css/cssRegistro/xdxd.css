@@ -1,184 +1,127 @@
-body {
-    height: 100%;
-    background-image: linear-gradient(#b8cce6, #8a95b1);
-    background-size: cover;
-    background-attachment: fixed;
-
+/** HEADER */
+.fondosi {
+	background-color: #587993;
 }
-
-
-
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:40px;
-	right:40px;
-	background-color:#25d366;
-	color:rgb(0, 0, 0);
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
-}
-.float:hover {
-	text-decoration: none;
-	color: #25d366;
-  background-color:#fff;
-}
-
-.my-float{
-	margin-top:16px;
-}
-
-.ola {
-
-    margin-top: 10%;
-}
-
-.imgfooter {
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100%;
-}
-
-footer {
-    padding-bottom: 5%;
-    margin-top: 10%;
-}
-
-/*header*/
 
 .fondosi a {
-    color: black;
+	color: black;
 }
 
-.header {
-    background: #c9ecff;
-    padding: 1rem 0;
-
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-
-}
-
-.header a {
-    color: black;
-    text-decoration: none;
-
-}
-
-.logo-nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-/*-----------------*/
-.logo {
-    letter-spacing: 5px;
-    font-size: 1rem;
-}
-
-.menu-icon {
-    display: none;
-}
-
-.navbar {
-    background: rgba(64, 206, 194, 0.144);
-
+.fondosi nav {
+	background-color: #587993;
 }
 
 .color {
-    color: #000;
+	color: cadetblue;
 }
 
-/*-----------------*/
-
-
-
-/*FORMS*/
-
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+.navbar-dark .navbar-toggler {
+	color: rgba(255, 255, 255, .55);
+	border-color: rgba(255, 255, 255, .1);
 }
- main{
-     margin-top: 10%;
- }
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+/*! FIN HEADER */
 
 
-.formulario {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 18px 28px;
-    box-sizing: border-box;
-    margin-top: 20px;
-    border-radius: 7px;
+/* INICIO BODY */
+#visualizador {
+	display: flex;
+	flex-direction: row;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+}
+
+.columna {
+	flex: 1;
+	padding: 10px;
+	text-align: center;
+	border-right: 1px solid #ccc;
+}
+
+.columna:last-child {
+	border-right: none;
+}
+
+.container {
+	margin-top: 6em;
+}
+
+/* FIN BODY */
+
+/* api */
+
+.float {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 40px;
+	right: 40px;
+	background-color: #25d366;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 30px;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 100;
+}
+
+.float:hover {
+	text-decoration: none;
+	color: #25d366;
+	background-color: #fff;
+}
+
+.my-float {
+	margin-top: 16px;
+}
+
+/** BODY */
+.separacion5 {
+	height: 5em;
 }
 
 .boton {
-    width: 200px;
-    height: 200px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+	margin-top: 0.5em;
+	box-shadow: 2px 2px 3px #2c2c2c;
+	text-align: center;
+	background-color: #84b6f485 !important;
+}
+
+
+.card1{
+	box-shadow: 2px 2px 3px #2c2c2c65;
+	padding: 1em;
+	border-radius: 0.5em;
+	display: inline-table;
+	height: 100%; 
 	width: 100%;
-	height: 80px;
-	background: #2a1841;
-	color: #fff;
-	font-family: 'Roboto', sans-serif;
-	font-size: 20px;
-	font-weight: 500;
-	border: none;
-	cursor: pointer;
-	text-transform: uppercase;
-	transition: .3s ease all;
-	border-radius: 5px;
-	position: relative;
-	overflow: hidden;
+	background-color: #84b6f471;
 }
 
-.boton span {
-	position: relative;
-	z-index: 2;
-	transition: .3s ease all;
+.card{
+	border-radius: 0.5em;
 }
 
-.boton.dos::after {
-	content: "";
-	width: 100%;
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	left: calc(-100% - 80px);
-	border-bottom: 80px solid #286cff;
-	border-right: 80px solid transparent;
-	transition: .4s ease-in-out all;
+.bordej{
+	border-radius: 0.5em;
+	box-shadow: 2px 2px 3px #2c2c2c;
 }
 
-.boton.dos:hover::after {
-	left: 0;
+.card-body{
+	background-color: #84b6f471;
 }
 
-.label{
-    color: #fff;
-}
-
-.titul{
-	color: white;
-}
-
-#messages-container{
-	background-color: white;
-	border-radius: 1em;
-}
-
-.mensaje{
-	margin: 0;
-}
