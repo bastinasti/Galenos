@@ -1,0 +1,79 @@
+{% extends 'Inicio/pagos/ppp.html' %}
+
+
+{% block gatos %}
+
+
+
+<div class="container poad">
+    <div class=" row ">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <button class="open-button" onclick="openForm()">Abrir formulario</button>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        
+    </div>
+
+
+    <div class="row">
+        <div class="popup" id="myForm">
+            <h2>Formulario</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <input type="submit" value="Enviar">
+                <button type="button" onclick="closeForm()">Cerrar</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div id="main-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Especialidad</th>
+                        <th>Costo</th>
+                    </tr>
+                </thead>
+    
+                <tr>
+                    <td>Ariana Facil</td>
+                    <td>Medicina General</td>
+                    <td>$ 3,000</td>
+                </tr>
+                <tr>
+                    <td>Juan Perez</td>
+                    <td>Dermatología</td>
+                    <td>$ 5,500</td>
+                </tr>
+                <tr>
+                    <td>Gatito Feliz</td>
+                    <td>Medicina</td>
+                    <td>$ 10,100</td>
+                </tr>
+                <tr>
+                    <td>Juan</td>
+                    <td>Medicina</td>
+                    <td>$ 450</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock gatos %}

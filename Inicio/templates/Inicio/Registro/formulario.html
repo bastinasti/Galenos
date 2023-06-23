@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctores</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'Inicio/css/cssRegistro/doctores.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'Inicio/css/cssRegistro/formulario.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5812197663.js" crossorigin="anonymous"></script>
@@ -116,65 +116,53 @@
 
 
 
-        <main class="main">
+        <main class="form-signin hola" id="capa">
+
+            <form method="POST" action="{% url 'tomar_hora' idAgenda idMedico idEspe %}" class="row g-3" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="xd">
+                    <h3 class="h3 mb-3 fw-bold">Agenda Tu Hora</h3>
+                </div>
+
+                <div class="floating la col-md-12">
+                    <label>Nombre</label>
+                    <input type="" placeholder="Ingrese el nombre del paciente" required class="form-control" name="nombre" id="">
+                </div>
+
+                <div class="floating la col-md-12">
+                    <label>rut</label>
+                    <input type="" placeholder="Ingrese el rut del paciente" required class="form-control" name="rut" id="">
+                </div>
+
+                <div class="floating la col-md-12">
+                    <label>previsión</label>
+                    <select class="form-control" required name="prevision" id="prevision">
+                        <option value="">Selecione la previsión del paciente</option>
+                        {% for p in previsiones %}
+                        <option value="{{ p.idPrevision }}">{{ p.nombrePrevi }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                </div>
+
+                <div class="floating la col-md-12">
+                    <label>Correo</label>
+                    <input type="email" placeholder="email@email.cl" required class="form-control" name="email" id="email">
+                </div>
+
+                <button id="btn" class="fw-bold" type="submit">Registrar Hora</button>
+
+                {% if messages %} <div> {% for i in messages %} <p> {{ i }} </p> {% endfor %} </div> {% endif %}
+
+            </form>
 
             <div class="container">
-
-                <div class="row" style="padding: 10px 0;">
-
-                    <div class="col-12">
-
-                        <div class="row">
-
-                            {% for m in med %}
-                            <div class="col-md-4">
-                                <div class="card" style="height: 100%; width: 100%; margin: 5px px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-dark"><b>Nombre Doctor: </b> {{ m.idMedico.idUsuario.nombre }} </h5>
-                                        <a href="{% url 'horasDisp' m.idMedico.idMedico idEspe %}"><img
-                                                class="bd-placeholder-img card-img-top bordej" width="100%" height="80%"
-                                                src="{% static 'Inicio/img/especialidades/medicina_general.jpg' %}"
-                                                role="img" aria-label="Placeholder: Thumbnail"
-                                                preserveAspectRatio="xMidYMid slice" focusable="false"></a>
-                                        <title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
-                                            fill="#eceeef" dy=".3em"></text>
-                                        </img>
-                                        <div class="row">
-                                            <div class="col-md-12 text-end">
-                                                <a class="btn btn-secondary"
-                                                    style="background-color: rgb(0, 0, 128); margin-top: 1em ; margin-bottom: 3em ;"
-                                                    href="{% url 'horasDisp' m.idMedico.idMedico idEspe %}">Buscar Hora 🔎</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-
-                        </div>
-
-                    </div>
-                    
-                    <div class="text-end ">
-                        
-                    </div>
-                    <div class="container">
-                        <a class="float" href="{{ request.META.HTTP_REFERER }}">
-                        <i class="fa-solid fa-arrow-left fa-shake"></i></a>
-                    </div>
-                </div>
-                
+                <a class="float" href="{{ request.META.HTTP_REFERER }}">
+                <i class="fa-solid fa-arrow-left fa-shake"></i></a>
             </div>
 
-
         </main>
-
-
-
-
-
 
 
         <footer class="container">

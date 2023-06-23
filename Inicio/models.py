@@ -13,6 +13,7 @@ class Prevision(models.Model):
 class Especialidad (models.Model):
     idEspe = models.AutoField(primary_key = True, verbose_name = "La primary key de la especialidad")
     nombreEspe = models.CharField(max_length = 50, verbose_name = "Nombre de la especialidad")
+    fotoEspe = models.ImageField(upload_to = "Especialidad", null = True)
 
     def __str__(self):
         return self.nombreEspe
@@ -44,7 +45,7 @@ class Paciente(models.Model):
     idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.idPaciente
+        return self.idUsuario.nombre
     
     
 class Medico(models.Model):
@@ -77,3 +78,6 @@ class horaS(models.Model):
     idAgenda = models.ForeignKey(Agenda,on_delete=models.CASCADE)
     idMedico = models.ForeignKey(Medico, on_delete=models.CASCADE)
     idEspe = models.ForeignKey(Especialidad, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.rutPaciente

@@ -183,12 +183,13 @@ def agregar_dia(request):
         # Realiza la lógica adicional aquí
         fecha_formateada = fecha2.strftime("%d/%m/%y")
         med = Usuario.objects.get(rut = rutMedico)
-        existeeee = Agenda.objects.filter(idMedico = rutMedico, fechaDisp = fecha_formateada, horaDisp = hora)
+        medi = Medico.objects.get(idUsuario = med.idUsuario)
+        existeeee = Agenda.objects.filter(idMedico = medi.idMedico, fechaDisp = fecha_formateada, horaDisp = hora)
 
         if existeeee:
             messages.error(request, "la fecha y hora que se quiere registrar ya existe")
         else:
-            Agenda.objects.create(rutPersona = rutMedico, fechaDisp = fecha_formateada, horaDisp = hora, estado = 'Disponible')
+            Agenda.objects.create(fechaDisp = fecha_formateada, horaDisp = hora, estado = 'Disponible',idMedico = medi)
             messages.success(request, "Se genero la fecha con exito")
     else:
         # La fecha ingresada es menor que la fecha actual
@@ -203,8 +204,19 @@ def misHoras(request):
         correo = request.session['correo']
         usuarios = Usuario.objects.get(correo = correo)
         hor = horaS.objects.filter(rutPaciente = usuarios.rut)
+
         if hor:
-            contexto = {'hor' : hor}
+            for x in hor:
+
+                hora = x.idAgenda.horaDisp
+
+                horas = hora[:2]
+                minutos = hora[2:]
+                hora_objeto = datetime.strptime(horas + minutos, "%H%M").time()
+                hora_formateada = hora_objeto.strftime("%H:%M")
+
+
+            contexto = {'hor' : hor , 'hora_formateada' : hora_formateada}
             return render(request, "Inicio/misHoras/misHoras.html", contexto)
         else:
             return render(request, "Inicio/misHoras/misHoras.html")
@@ -214,14 +226,96 @@ def misHoras(request):
 #* --------------------------------------------------------------------- ---- Mostrar doctores ---- ---------------------------------------------------------------------
 def doctores(request, idEspe):
     med = MedicoEspec.objects.filter(idEspe = idEspe)
-    contexto = {'med' : med}
+    contexto = {'med' : med, 'idEspe' : idEspe}
     return render(request, "Inicio/registro/doctores.html", contexto)
 
-def horasDisp(request, idMedico):
+def horasDisp(request, idMedico, idEspe):
     try:
-        horasm = Agenda.objects.get(idMedico = idMedico)
-        contexto = {'horasm' : horasm}
+        horasm = Agenda.objects.filter(idMedico = idMedico, estado = 'Disponible')
+
+        for x in horasm:
+
+            hora = x.horaDisp
+
+            horas = hora[:2]
+            minutos = hora[2:]
+            hora_objeto = datetime.strptime(horas + minutos, "%H%M").time()
+            hora_formateada = hora_objeto.strftime("%H:%M")
+        
+        contexto = {'horasm' : horasm, 'hora_formateada' : hora_formateada, 'idMedico' : idMedico,'idEspe' : idEspe}
 
         return render(request, "Inicio/horasDoc.html", contexto)
     except:
         return render(request, "Inicio/horasDoc.html")
+
+
+
+def pagos(request):
+    return render(request, "Inicio/pagos/pagos.html")
+
+def ppp(request):
+    return render(request, "Inicio/pagos/ppp.html")
+
+def editarHoras(request):
+    try:
+        agendas = horaS.objects.all()
+        for a in agendas:
+            agenda2 = Agenda.objects.filter(idAgenda = a.idAgenda)
+            
+            hora = agenda2.horaDisp
+
+            horas = hora[:2]
+            minutos = hora[2:]
+            hora_objeto = datetime.strptime(horas + minutos, "%H%M").time()
+            hora_formateada = hora_objeto.strftime("%H:%M")
+
+        contexto = {'agendas' : agendas, 'hora_formateada' : hora_formateada}
+
+        return render(request, 'Inicio/editarHoras/editarHora.html', contexto)
+    except:
+        return render(request, 'Inicio/editarHoras/editarHora.html')
+    
+def formulario_paci(request, idAgenda, idMedico, idEspe):
+    previsiones = Prevision.objects.all()
+    contexto = {"previsiones" : previsiones,'idAgenda' : idAgenda , 'idMedico' : idMedico,'idEspe' : idEspe}
+    return render (request, 'Inicio/Registro/formulario.html', contexto)
+
+
+def tomar_hora(request, idAgenda, idMedico, idEspe):
+    nombre = request.POST['nombre']
+    rut = request.POST['rut']
+    prevision = request.POST['prevision']
+    correo = request.POST['email']
+
+    estado = 'No disponible'
+
+    previ = Prevision.objects.get(idPrevision = prevision)
+
+    agendas = Agenda.objects.get(idAgenda = idAgenda)
+    medicos = Medico.objects.get(idMedico = idMedico)
+    especialidade = Especialidad.objects.get(idEspe = idEspe)
+    tip = TipoUsuario.objects.get(idTipoUsuario = 2)
+
+    # Verificar si el usuario ya existe
+    try:
+        existe = Usuario.objects.get(rut = rut)
+        horaS.objects.create(rutPaciente = rut, idAgenda = agendas, idMedico = medicos, idEspe = especialidade)
+        agendas.estado = estado
+        agendas.save()
+        return redirect('inicio')
+    except Usuario.DoesNotExist:
+        Usuario.objects.create(nombre = nombre, rut = rut, correo = correo, clave ='1234', idTipoUsuario = tip)
+        existe = Usuario.objects.get(rut = rut)
+        Paciente.objects.create(idPrevision = previ, idUsuario = existe)
+        hora_solicitada = horaS.objects.filter(rutPaciente = rut, idAgenda = agendas, idMedico = medicos, idEspe = especialidade)
+        
+        # Verificar si la hora ya está tomada
+        if hora_solicitada.exists():
+            messages.error(request, 'La hora seleccionada ya está tomada. Por favor, elija otra.')
+            return redirect('formulario_paci', idAgenda, idMedico, idEspe)
+        else:
+            horaS.objects.create(rutPaciente = rut, idAgenda = agendas, idMedico = medicos, idEspe = especialidade)
+            agendas.estado = estado
+            agendas.save()
+            return redirect('inicio')
+

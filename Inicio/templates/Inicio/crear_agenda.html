@@ -16,7 +16,7 @@
     <header class="fondosi">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Dos Alamos</a>
+                <a class="navbar-brand" href="{% url 'inicio' %}">Dos Alamos</a>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
                 <div class="navbar-collapse collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
                         </li>
 
                         {% if request.session.correo %}
@@ -85,6 +85,26 @@
                         </li>
                         {% else %}
                         {% endif %}
+
+                        {% if request.session.correo %}
+                        <li class="nav-item">
+                        {% if request.session.alfin == 'secretaria' %}
+                        <a class="nav-link active" href="{% url 'pagos' %}">Ingresar pagos</a>
+                        {% else %}
+                        {% endif %}
+                        </li>
+                        {% else %}
+                        {% endif %}
+
+                        {% if request.session.correo %}
+                        <li class="nav-item">
+                        {% if request.session.alfin == 'secretaria' %}
+                        <a class="nav-link active" href="{% url 'editarHoras' %}">Modificar Horas</a>
+                        {% else %}
+                        {% endif %}
+                        </li>
+                        {% else %}
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -141,18 +161,18 @@
                             <label for="inputHora" class="form-label">Seleccionar hora de atención</label>
                             <select id="inputHora" class="form-select" name="inputHora">
                                 <option selected>Seleccionar hora</option>
-                                <option value="800">8:00 a 8:30</option>
-                                <option value="831">8:31 a 9:00</option>
-                                <option value="901">9:01 a 9:30</option>
-                                <option value="931">9:31 a 10:00</option>
-                                <option value="1000">10:00 a 10:30</option>
-                                <option value="1031">10:31 a 11:00</option>
-                                <option value="1101">11:01 a 11:30</option>
-                                <option value="1131">11:31 a 12:00</option>
-                                <option value="1201">12:01 a 12:30</option>
-                                <option value="1231">12:31 a 13:00</option>
-                                <option value="1301">13:01 a 13:30</option>
-                                <option value="1331">13:31 a 14:00</option>
+                                <option value="800">8:00</option>
+                                <option value="831">8:31</option>
+                                <option value="901">9:01</option>
+                                <option value="931">9:31</option>
+                                <option value="1000">10:00</option>
+                                <option value="1031">10:31</option>
+                                <option value="1101">11:01</option>
+                                <option value="1131">11:31</option>
+                                <option value="1201">12:01</option>
+                                <option value="1231">12:31</option>
+                                <option value="1301">13:01</option>
+                                <option value="1331">13:31</option>
                             </select>
                         </div>
 

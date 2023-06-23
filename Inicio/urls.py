@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import doctores, horasDisp, obtener_medicos,agregar_dia, inicio, misHoras, monitoPaciente, especialidad, registro2, iniciosesion, registrar_usuario, iniciar_sesion, salir, registrar_paciente, registroUsuario, crear_agenda
+from .views import tomar_hora,formulario_paci,doctores, editarHoras, pagos, horasDisp, obtener_medicos,agregar_dia, inicio, misHoras, monitoPaciente, especialidad, registro2, iniciosesion, registrar_usuario, iniciar_sesion, salir, registrar_paciente, registroUsuario, crear_agenda
 
 
 urlpatterns =[
@@ -18,5 +18,10 @@ urlpatterns =[
     path('misHoras/', misHoras, name="misHoras"),
     path('obtener_medicos/', obtener_medicos, name='obtener_medicos'),
     path('doctores/<int:idEspe>/', doctores, name='doctores'),
-    path('horasDisp/<int:idMedico>/', horasDisp, name='horasDisp'),
+    path('horasDisp/<int:idMedico>/<int:idEspe>/', horasDisp, name='horasDisp'),
+    path('obtener_medicos/', obtener_medicos, name='obtener_medicos'),
+    path('editarHoras/', editarHoras, name='editarHoras'),
+    path('pagos/', pagos, name='pagos'),
+    path('formulario_paci/<int:idAgenda>/<int:idMedico>/<int:idEspe>/',formulario_paci,name="formulario_paci"),
+    path('tomar_hora/<int:idAgenda>/<int:idMedico>/<int:idEspe>/',tomar_hora, name="tomar_hora")
 ]
